@@ -4,7 +4,7 @@ function Polls() {
     const [polls, setPoll] = useState([]);
 
     useEffect(() => {
-        fetch(`${process.env.REACT_APP_API_BASE_URL}/polls/`)
+        fetch(`${process.env.REACT_APP_API_BASE_URL}/polls`)
             .then((response) => response.json())
             .then((data) => setPoll(data))
             .catch((error) => console.error('Error fetching poll:', error));
@@ -15,7 +15,7 @@ function Polls() {
             <h2>Polls</h2>
             <ul>
                 {polls.map((polls) => (
-                    <li key={polls.id}>{polls.name}</li>
+                    <li key={polls.id}>{polls.id} | {polls.question_text} | {polls.pub_date} </li>
                 ))}
             </ul>
         </div>
