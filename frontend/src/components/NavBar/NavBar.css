@@ -1,0 +1,42 @@
+/* Navbar container styles */
+.navbar {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: fit-content;
+    background-color: #333;
+    border-radius: 33px;
+    padding: 10px;
+    z-index: 1000;
+}
+/* Unordered list inside the navbar */
+.navbar ul {
+    list-style-type: none;
+    display: flex;
+    padding: 0;
+    margin: 0;
+}
+
+/* List item inside the navbar */
+.navbar ul li  {
+    margin: 10px 0px;
+    padding: 0px 10px;
+}
+
+.navbar ul li a {
+    padding: 10px;
+    color: white;
+    text-decoration: none;
+}
+
+/* Visited link styling */
+.navbar ul li a:visited {
+    color: white;
+    text-decoration: none;
+}
+
+.navbar ul li a:hover {
+    background-color: orange;
+    border-radius: 20px;
+}

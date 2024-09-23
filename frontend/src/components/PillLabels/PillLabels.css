@@ -1,0 +1,26 @@
+.pillContainer {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px; /* Adjust height as needed */
+    width: 200px;  /* Adjust width as needed */
+}
+
+.pillLabel {
+    color: white;
+    padding: 5px 30px;
+    border-radius: 50px;  /* Makes it look like a pill */
+    font-size: 24px;
+    text-align: center;
+    opacity: 0; /* Start hidden */
+    transition: opacity 1s ease-in-out; /* Smooth transition */
+}
+
+.fadeIn {
+    opacity: 1; /* Fully visible */
+}
+
+.fadeOut {
+    opacity: 0; /* Fully transparent */
+}
