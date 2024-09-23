@@ -9,7 +9,6 @@ function NavBar() {
     const [showScrollToTop, setShowScrollToTop] = useState(false);
 
     useEffect(() => {
-        console.log(window.scrollY)
         const handleScroll = () => {
             if (window.scrollY > 50) { // Show button after scrolling down 300px
                 setShowScrollToTop(true);

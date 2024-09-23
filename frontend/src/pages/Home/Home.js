@@ -23,7 +23,7 @@ function Home() {
                         </div>
                     </div>
                 </div>
-                <img src={hero} className='hero' />
+                <img src={hero} alt='Daniel' className='hero' />
             </div>
 
         </div>
