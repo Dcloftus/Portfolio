@@ -4,39 +4,130 @@
     bottom: 30px;
     left: 50%;
     transform: translateX(-50%);
-    width: fit-content;
-    background-color: #333;
+    width: auto; /* Ensure the navbar width grows based on its content */
+    background-color: #6d6d6d51;
+    backdrop-filter: blur(6px);
     border-radius: 33px;
     padding: 10px;
+    display: inline-flex; /* Ensures the content inside adjusts properly */
+    align-items: center;
     z-index: 1000;
 }
+
 /* Unordered list inside the navbar */
+.nav-items {
+    list-style-type: none;
+    display: flex;
+    padding: 0;
+    margin: 0;
+    transition: transform 0.3s ease; /* Smooth shift transition when button appears */
+}
+
+/* Shifts the nav items to the left when the scroll-to-top button appears */
+.nav-items.shift-left {
+    transform: translateX(-40px); /* Shift nav items to the left */
+}
+
+/* List item inside the navbar */
+.nav-items li {
+    margin: 0 10px; /* Adjust spacing between nav items */
+}
+
+/* Link styling within nav items */
+.nav-items li a {
+    padding: 10px 20px;
+    color: white;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.nav-items li a:hover {
+    background-color: var(--primary-color-hover);
+    border-radius: 20px;
+}
+
+/* Visited link styling */
+.nav-items li a:visited {
+    color: white;
+    text-decoration: none;
+}
+
+/* Scroll-to-top container */
+.scrollToTopContainer {
+    display: flex;
+    align-items: center;
+    position: absolute; /* Absolutely position inside the navbar */
+    right: 10px; /* Adjust position */
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+/* Scroll-to-top button */
+.scrollToTop {
+    background-color: var(--primary-color);
+    height: 40px;
+    width: 40px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: opacity 0.3s ease, transform 0.3s ease; /* Smooth fade in and movement */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0; /* Hidden by default */
+    transform: translateY(10px); /* Starts slightly lower */
+}
+
+/* Show scroll-to-top button */
+.scrollToTop.show {
+    opacity: 1; /* Visible when scrolled */
+    transform: translateY(0); /* Moves up into place */
+}
+
+/* Scroll-to-top button hover effect */
+.scrollToTop:hover {
+    background-color: var(--primary-color-hover);
+}
+
+/* Adjust the hover effect for nav items */
+.nav-items li a:hover {
+    background-color: var(--primary-color-hover);
+    border-radius: 20px;
+}
+
+/* Navbar styling for smooth transitions and overall layout */
 .navbar ul {
     list-style-type: none;
     display: flex;
     padding: 0;
     margin: 0;
+    transition: transform 0.3s ease; /* Transition for the nav items */
 }
 
-/* List item inside the navbar */
-.navbar ul li  {
+.navbar ul li {
     margin: 10px 0px;
     padding: 0px 10px;
 }
 
 .navbar ul li a {
-    padding: 10px;
+    padding: 10px 20px;
     color: white;
     text-decoration: none;
+    white-space: nowrap;
 }
 
-/* Visited link styling */
+.navbar ul li a:hover {
+    background-color: var(--primary-color-hover);
+    border-radius: 20px;
+}
+
 .navbar ul li a:visited {
     color: white;
     text-decoration: none;
 }
 
-.navbar ul li a:hover {
-    background-color: orange;
-    border-radius: 20px;
+.scrollToTop {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
