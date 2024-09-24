@@ -1,20 +1,32 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Home from './components/Home';
-import Projects from './components/Projects';
-import WorkExperience from './components/WorkExperience';
-import Polls from './components/TestPolls';
+
+// Components
+import NavBar from './components/NavBar/NavBar'
+import Footer from './components/Footer/Footer'
+
+// Pages
+import Home from './pages/Home/Home';
+import Projects from './pages/Projects';
+import WorkExperience from './pages/WorkExperience';
+import Contact from './pages/Contact/Contact'
+import Polls from './pages/TestPolls';
 
 function App() {
     return (
         <Router>
             <div className="App">
-                <Routes>
+			<NavBar />
+			<main>
+				<Routes>
 					<Route path="/" element={<Home />} />
-                    <Route path="/projects" element={<Projects />} />
-                    <Route path="/work-experience" element={<WorkExperience />} />
+					<Route path="/contact" element={<Contact />} />
+					<Route path="/projects" element={<Projects />} />
+					<Route path="/work-experience" element={<WorkExperience />} />
 					<Route path="/polls" element={<Polls />} />
-                </Routes>
+				</Routes>
+			</main>
+			<Footer />
             </div>
         </Router>
     );
