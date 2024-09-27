@@ -5,7 +5,9 @@ import './Home.css';
 import WasHere from '../Was Here/WasHere';
 
 // Components
-import PillLabels from '../../components/PillLabels/PillLabels.js'
+import PillLabels from '../../components/PillLabels/PillLabels'
+import Banner from '../../components/Banner/Banner'
+import {ReactComponent as SendIcon} from '../../assets/icons/Send.svg'
 
 // Images
 import hero from '../../assets/images/DanielHerox2.png'
@@ -48,7 +50,8 @@ function Home() {
                 <img src={hero} alt='Daniel' className='hero' />
             </div>
             <WasHere />
-
+            <Banner text="Get in Touch" icon={<SendIcon />} direction="backward" rotation={-2} />
+            <Banner text="Contact Me" icon={<SendIcon />} direction="forward" rotation={4} />
         </div>
     );
 }

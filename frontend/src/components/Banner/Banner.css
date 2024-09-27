@@ -1,0 +1,76 @@
+.bannerWrapper {
+    display: flex;
+    align-items: center;
+    width: 100vw;
+    overflow: hidden;
+    position: absolute;
+    filter: drop-shadow(2px 2px 5px #35353535);
+}
+
+.bannerContainer {
+    flex-grow: 1;
+    white-space: nowrap;
+    background-color: var(--primary-color);
+    display: flex;
+    align-items: center;
+    height: 30px;
+    /* transform: rotate(1deg); */
+    transform-origin: center;
+    margin-left: -20px;
+    margin-right: -20px;
+    padding: 0px 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+.scrollContent {
+    display: flex;
+    align-items: center;
+    animation-duration: 60s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+.scroll-backward .scrollContent {
+    animation-name: scroll-backward;
+}
+
+@keyframes scroll-backward {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+.scroll-forward .scrollContent {
+    animation-name: scroll-forward;
+}
+
+@keyframes scroll-forward {
+    0% {
+        transform: translateX(-50%);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+.bannerItem {
+    display: flex;
+    gap: 50px;
+    flex-shrink: 0;
+    padding-right: 50px;
+}
+
+.item {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+}
+
+p {
+    padding: 0;
+    margin: 0;
+}

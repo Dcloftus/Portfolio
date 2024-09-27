@@ -75,7 +75,7 @@ function WasHere() {
 
     return (
         <div style={{position: 'relative',top: '-40px'}}>
-            <Section style={{position: 'relative',top: '10px'}}/>
+            <Section style={{position: 'relative',top: '15px', width: '100%'}}/>
             <div className='wasHereContainer'>
                 <img src={wasHereHeader} alt='Was Here' className='wasHereHeader' />
                 <div className='randomContainer'>
@@ -101,7 +101,7 @@ function WasHere() {
                     <div className="wasHereMessage">{message ? <p>{message}</p> : null}</div>
                 </form>
             </div>
-            <Section style={{position: 'relative',top: '-10px', transform: 'rotate(180deg)'}}/>
+            <Section style={{position: 'relative',top: '-15px', transform: 'rotate(180deg)', width: '100%'}}/>
         </div>
     );
 }
