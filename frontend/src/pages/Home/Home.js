@@ -1,6 +1,10 @@
 import React from 'react';
 import './Home.css';
 
+// Sections
+import WasHere from '../Was Here/WasHere';
+
+// Components
 import PillLabels from '../../components/PillLabels/PillLabels.js'
 
 // Images
@@ -43,6 +47,7 @@ function Home() {
                 </div>
                 <img src={hero} alt='Daniel' className='hero' />
             </div>
+            <WasHere />
 
         </div>
     );
