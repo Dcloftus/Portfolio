@@ -8,6 +8,7 @@ import Footer from './components/Footer/Footer'
 // Pages
 import Home from './pages/Home/Home';
 import Projects from './pages/Projects';
+import About from './pages/About/About';
 import WorkExperience from './pages/WorkExperience';
 import Contact from './pages/Contact/Contact'
 import Polls from './pages/TestPolls';
@@ -23,7 +24,9 @@ function App() {
 					<Route path="/contact" element={<Contact />} />
 					<Route path="/projects" element={<Projects />} />
 					<Route path="/work-experience" element={<WorkExperience />} />
+					<Route path="/about" element={<About />} />
 					<Route path="/polls" element={<Polls />} />
+
 				</Routes>
 			</main>
 			<Footer />

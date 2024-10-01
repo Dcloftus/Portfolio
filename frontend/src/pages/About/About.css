@@ -1,0 +1,82 @@
+.mainContainer {
+    padding: 20px 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+.mainContainer h1 {
+    color: var(--text-seondary-color);
+}
+
+.aboutWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 60%;
+}
+
+.aboutMeContainer {
+    display: flex;
+    gap: 20px;
+    flex-direction: row;
+}
+
+.imageContainer img {
+    width: 240px;
+}
+
+.contentContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.headerContainer {
+
+}
+
+.descriptionContainer {
+
+}
+
+.actionContainer {
+    display: flex;
+    justify-content: end;
+}
+
+.actionContainer button {
+    background-color: var(--primary-color);
+    border: none;
+    border-radius: 20px;
+    padding: 10px 20px;
+    color: var(--text-color);
+    font-weight: 800;
+    cursor: pointer;
+}
+
+.actionContainer button:hover {
+    background-color: var(--primary-color-hover);
+}
+
+.titleLinksContainer {
+    display: flex;
+    justify-content: space-between;
+}
+
+.location {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.location span {
+    color: var(--text-seondary-color);
+    font-size: 10px;
+}
+
+.last-child {
+    margin-top: auto;  /* Pushes this child to the end */
+  }

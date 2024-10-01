@@ -59,6 +59,11 @@
     padding: 10px 20px;
     color: var(--text-color);
     font-weight: 800;
+    cursor: pointer;
+}
+
+.wasHereButton:hover {
+    background-color: var(--primary-color-hover);
 }
 
 .wasHereMessage {
