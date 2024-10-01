@@ -3,6 +3,7 @@ import './Home.css';
 
 // Sections
 import WasHere from '../Was Here/WasHere';
+import AboutMe from '../About/About'
 
 // Components
 import PillLabels from '../../components/PillLabels/PillLabels'
@@ -50,6 +51,7 @@ function Home() {
                 <img src={hero} alt='Daniel' className='hero' />
             </div>
             <WasHere />
+            <AboutMe />
             <Banner text="Get in Touch" icon={<SendIcon />} direction="backward" rotation={-2} />
             <Banner text="Contact Me" icon={<SendIcon />} direction="forward" rotation={4} />
         </div>
