@@ -135,6 +135,12 @@
     animation-delay: 0s; /* 1-second delay before the animation starts */
 }
 
+.wave {
+    display: inline-block;
+    transform-origin: bottom right;
+    animation: none;
+}
+
 
 @keyframes pulse-animation-small {
     0% {
@@ -189,6 +195,24 @@
         rotate: 0deg;
     }
 }
+
+@keyframes wave {
+    0% {
+      transform: rotate(0deg);
+    }
+    25% {
+      transform: rotate(-15deg);
+    }
+    50% {
+      transform: rotate(10deg);
+    }
+    75% {
+      transform: rotate(-10deg);
+    }
+    100% {
+      transform: rotate(0deg);
+    }
+  }
 
 /* Responsive changes */
 @media screen and (max-width: 930px) {
