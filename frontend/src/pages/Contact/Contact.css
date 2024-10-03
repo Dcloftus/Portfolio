@@ -10,8 +10,6 @@
     width: 60%;
     display: flex;
     justify-content: space-between;
-    gap: 20px;
-
 }
 
 .contactContent {
@@ -34,7 +32,6 @@
     background-color: var(--text-color);
     border-radius: 20px;
     padding: 20px;
-    gap: 20px;
 }
 
 .contactForm {
@@ -53,6 +50,7 @@
 }
 
 .contactButton {
+    margin-top: 20px;
     background-color: var(--primary-color);
     border: none;
     border-radius: 20px;
