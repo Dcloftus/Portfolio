@@ -4,7 +4,6 @@ from rest_framework.response import Response
 from .serializers import MarksSerializer
 from django.db import IntegrityError
 
-from django.shortcuts import render
 from django.http import JsonResponse
 
 from .models import Marks

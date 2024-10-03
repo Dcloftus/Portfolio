@@ -1,9 +1,6 @@
 import React from 'react';
 import './Contact.css';
 
-// Icons
-import { ReactComponent as Pin } from '../../assets/icons/Pin.svg';
-
 function Contact() {
     return (
         <div className='contactWrapper'>

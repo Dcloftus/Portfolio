@@ -13,7 +13,6 @@ import {ReactComponent as SendIcon} from '../../assets/icons/Send.svg'
 
 // Images
 import hero from '../../assets/images/DanielHerox2.png'
-import wave from '../../assets/images/Wave.png'
 
 import { ReactComponent as StarLg } from '../../assets/icons/StarLg.svg';
 import { ReactComponent as StarMd } from '../../assets/icons/StarMd.svg';
@@ -24,30 +23,37 @@ import { ReactComponent as TadpoleSm } from '../../assets/icons/TadpoleSm.svg';
 
 function Home() {
     const waveRef = useRef(null);
+    const timeoutIdRef = useRef(null);  // Ref to store the timeout ID
 
     useEffect(() => {
         function randomWave() {
-          const randomWaves = Math.floor(Math.random() * 4) + 3; // Between 3 and 6 waves
-          const randomInterval = Math.floor(Math.random() * 5000) + 2000; // Random interval between 2 and 7 seconds
+            const randomWaves = Math.floor(Math.random() * 4) + 3; // Between 3 and 6 waves
+            const randomInterval = Math.floor(Math.random() * 5000) + 2000; // Random interval between 2 and 7 seconds
     
-          // Set the animation with a random number of iterations
-          waveRef.current.style.animation = `wave 1s ${randomWaves}  ease-in-out`;
+            if (waveRef.current) {
+                waveRef.current.style.animation = `wave 1s ease-in-out ${randomWaves}`;
+            }
     
-          // Reset the animation after it finishes and schedule the next wave
-          setTimeout(() => {
-            waveRef.current.style.animation = 'none'; // Reset animation
-            setTimeout(randomWave, randomInterval); // Schedule next wave
-          }, randomWaves * 1000); // Duration of one wave * number of waves
+            // Reset the animation after it finishes and schedule the next wave cycle
+            timeoutIdRef.current = setTimeout(() => {
+                if (waveRef.current) {
+                waveRef.current.style.animation = 'none'; // Reset animation
+                }
+    
+                timeoutIdRef.current = setTimeout(randomWave, randomInterval); // Schedule next wave cycle
+            }, randomWaves * 1000); // Duration of one wave * number of waves
         }
     
         // Start the first wave after an initial delay
-        setTimeout(randomWave, 1500);
+        timeoutIdRef.current = setTimeout(randomWave, 1000);
     
         // Clean up on component unmount
         return () => {
-          clearTimeout();
+            if (timeoutIdRef.current) {
+                clearTimeout(timeoutIdRef.current); // Clear any pending timeouts
+            }
         };
-      }, []);
+    }, []);
 
     return (
         <div>

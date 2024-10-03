@@ -38,6 +38,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'polls.apps.PollsConfig',
     'wasHere.apps.WashereConfig',
+    'contact.apps.ContactConfig',
     'corsheaders',
     'django.contrib.admin',
     'django.contrib.auth',
