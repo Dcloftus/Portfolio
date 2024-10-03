@@ -86,8 +86,10 @@ function Home() {
             </div>
             <WasHere />
             <AboutMe />
-            <Banner text="Get in Touch" icon={<SendIcon />} direction="backward" rotation={-2} />
-            <Banner text="Contact Me" icon={<SendIcon />} direction="forward" rotation={4} />
+            <div style={{height:'80px', backgroundColor: `var(--background-color)`}}>
+                <Banner text="Get in Touch" icon={<SendIcon />} direction="backward" rotation={-2} />
+                <Banner text="Contact Me" icon={<SendIcon />} direction="forward" rotation={4} />
+            </div>
             <Contact />
         </div>
     );
