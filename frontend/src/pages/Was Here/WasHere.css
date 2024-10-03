@@ -1,0 +1,75 @@
+.wasHereContainer {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    flex-direction: column;
+    height: 500px;
+    padding: 20px;
+    background-color: var(--text-color);
+}
+
+.wasHereHeader {
+    width: 400px;
+}
+
+.randomContainer {
+    position: relative;
+    width: 80%;
+    height: 80%;
+    overflow: hidden;
+}
+
+.randomList {
+    list-style-type: none;
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+.randomList li {
+    white-space: nowrap;
+    padding: 5px 10px;
+    border-radius: 20px; /* Rounded corners */
+    transition: transform 0.2s ease;  /* Add transition for smooth effects */
+}
+
+.wasHereForm {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.wasHereInputContainer {
+    display: flex;
+    gap: 20px;
+}
+
+.wasHereInput {
+    width: 250px;
+    padding-left: 20px;
+    font-weight: 400;
+    border-radius: 20px;
+    border: 2px solid var(--text-seondary-color);
+    background: none;
+}
+
+.wasHereButton {
+    background-color: var(--primary-color);
+    border: none;
+    border-radius: 20px;
+    padding: 10px 20px;
+    color: var(--text-color);
+    font-weight: 800;
+    cursor: pointer;
+}
+
+.wasHereButton:hover {
+    background-color: var(--primary-color-hover);
+}
+
+.wasHereMessage {
+    height: 24px;
+    text-align: center;
+    color: var(--text-seondary-color);
+}
