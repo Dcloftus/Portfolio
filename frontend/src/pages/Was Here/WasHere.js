@@ -5,45 +5,24 @@ import { ReactComponent as Section } from '../../assets/sections/WasHere.svg';
 
 function WasHere() {
     const [marks, setMarks] = useState([]);
-    const [styledMarks, setStyledMarks] = useState([]);
     const [name, setName] = useState("");
     const [message, setMessage] = useState("");
 
-    useEffect(() => {
+    const fontWeights = [300, 400, 500, 600]
+
+    function gatherMarks() {
+        console.log("Called Gather Marks");
         fetch(`${process.env.REACT_APP_API_BASE_URL}/wasHere`)
             .then((response) => response.json())
             .then((data) => {
                 setMarks(data);
-                generateRandomStyles(data); // Generate styles after fetching marks
             })
             .catch((error) => console.error('Error fetching marks:', error));
+    }
+
+    useEffect(() => {
+        gatherMarks();
     }, []);
-
-    // Generate random positions and font weight for marks
-    const generateRandomStyles = (marks) => {
-        const newStyledMarks = marks.map(mark => {
-            const containerWidth = 80; // Percentage of the width of the container
-            const containerHeight = 80; // Percentage of the height of the container
-            const tiltAngle = Math.random() * 20 - 10; // Random tilt between -10 and 10 degrees
-
-            // Random font weight from the given options
-            const fontWeights = [300, 400, 500, 600];
-            const randomFontWeight = fontWeights[Math.floor(Math.random() * fontWeights.length)];
-
-            return {
-                ...mark,
-                style: {
-                    position: 'absolute',
-                    top: `${Math.random() * containerHeight}%`,
-                    left: `${Math.random() * containerWidth}%`,
-                    transform: `rotate(${tiltAngle}deg)`,
-                    fontWeight: randomFontWeight,
-                    transition: 'transform 0.3s ease', // Optional: Smooth transition
-                },
-            };
-        });
-        setStyledMarks(newStyledMarks); // Set the styled marks state
-    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -56,15 +35,22 @@ function WasHere() {
                 },
                 body: JSON.stringify({
                     name: name,
-                    mark_date: new Date().toISOString().split('T')[0] // Current date in YYYY-MM-DD format
+                    mark_date: new Date().toISOString().split('T')[0],
+                    location_top: (Math.random() * 100).toFixed(2), // Times 100 will make the random number a percent of the container it is in.
+                    location_left: (Math.random() * 100).toFixed(2),
+                    location_rotation: (Math.random() * 20 - 10).toFixed(2),
+                    font_weight: fontWeights[Math.floor(Math.random() * fontWeights.length)],
+
                 }),
             });
             //const resJson = await res.json();
             console.log(res.status);
-            console.log(JSON.stringify(res.json()));
+            const resJson = await res.json();
+            console.log(resJson);  // Log the actual JSON response
             if (res.status === 200 || res.status === 201) {
                 setName("");
                 setMessage("Mark has been made!");
+                gatherMarks();
             } else {
                 setMessage("Mark was not added...");
             }
@@ -80,8 +66,15 @@ function WasHere() {
                 <img src={wasHereHeader} alt='Was Here' className='wasHereHeader' />
                 <div className='randomContainer'>
                     <ul className='randomList'>
-                        {styledMarks.map(mark => (
-                            <li key={mark.id} style={mark.style}>
+                        {marks.map(mark => (
+                            <li key={mark.id}
+                            style={{position:'absolute',
+                            top:`${mark.location_top}%`,
+                            transform: `translateY(-${mark.location_top}%) translateX(-${mark.location_left}%) rotate(${mark.location_rotation}deg)`,
+                            left:`${mark.location_left}%`,
+                            fontWeight:mark.font_weight,
+                            transition: 'transform 0.3s ease'}}
+                            >
                                 {mark.name}
                             </li>
                         ))}
