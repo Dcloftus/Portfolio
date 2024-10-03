@@ -4,6 +4,7 @@
     align-items: center;
     flex-direction: column;
     height: 500px;
+    width: 100vw;
     padding: 20px;
     background-color: var(--text-color);
 }
@@ -13,20 +14,22 @@
 }
 
 .randomContainer {
-    position: relative;  /* Allow absolutely positioned children */
-    width: 80%;        /* Full width */
-    height: 80%;      /* Set height to ensure there is enough space for positioning */
-    overflow: hidden;   /* Prevent overflowing items */
+    position: relative;
+    width: 80%;
+    height: 80%;
+    overflow: hidden;
 }
 
 .randomList {
     list-style-type: none;
     height: 100%;
+    width: 100%;
     padding: 0;
     margin: 0;
 }
 
 .randomList li {
+    white-space: nowrap;
     padding: 5px 10px;
     border-radius: 20px; /* Rounded corners */
     transition: transform 0.2s ease;  /* Add transition for smooth effects */
@@ -67,6 +70,7 @@
 }
 
 .wasHereMessage {
+    height: 24px;
     text-align: center;
     color: var(--text-seondary-color);
 }

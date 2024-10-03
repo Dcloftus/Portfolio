@@ -11,7 +11,7 @@ from .models import Marks
 @api_view(['GET'])
 def getMarks(request):
     marks = Marks.objects.all()
-    json = [{"id": m.id, "name": m.name, "mark_date": m.mark_date} for m in marks]
+    json = [{"id": m.id, "name": m.name, "mark_date": m.mark_date, "font_weight": m.font_weight, "location_top": m.location_top, "location_left": m.location_left, "location_rotation": m.location_rotation} for m in marks]
     return JsonResponse(json, safe=False)
 
 @api_view(['POST'])

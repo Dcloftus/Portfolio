@@ -70,7 +70,7 @@
     width: 360px;
     left: 50%;
     transform: translateX(-50%);
-    bottom: 0px;
+    bottom: -15px;
 }
 
 /* Graphics Positions Drop Shadows and Animations*/
