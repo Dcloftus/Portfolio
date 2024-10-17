@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'polls.apps.PollsConfig',
     'wasHere.apps.WashereConfig',
     'contact.apps.ContactConfig',
+    'resume.apps.ResumeConfig',
     'corsheaders',
     'django.contrib.admin',
     'django.contrib.auth',

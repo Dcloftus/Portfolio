@@ -32,8 +32,8 @@ function NavBar() {
     <nav className="navbar m-plus-rounded-1c-black">
         <ul className={`nav-items ${showScrollToTop ? 'shift-left' : ''}`}>
             <li><Link to="/">Home</Link></li>
-            <li><Link to="/portfolio">Portfolio</Link></li>
             <li><Link to="/projects">Projects</Link></li>
+            <li><Link to="/resume">Resume</Link></li>
             <li><Link to="/about">About Me</Link></li>
             <li><Link to="/contact">Contact</Link></li>
         </ul>
