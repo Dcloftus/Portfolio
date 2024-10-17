@@ -125,6 +125,10 @@
     gap: 5px;
 }
 
+.labeledIcon p {
+    color: var(--text-seondary-color);
+}
+
 .icon{
     transform: scale(1.25);
 }
@@ -133,4 +137,63 @@
     list-style:disc outside none;
     display:list-item;
     margin-left: 20px;
+}
+
+.educationSkillsWrapper {
+    color: var(--text-color);
+    display: flex;
+    gap: 20px;
+}
+
+.educationWrapper {
+    width: 60%;
+}
+
+.skillsWrapper {
+    width: 40%;
+}
+
+.skillsContainer {
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.skillsContainer p {
+    padding: 5px 10px;
+    background-color: var(--primary-color);
+    border-radius: 20px;
+}
+
+/* On screens that are 600px or less, set the background color to olive */
+@media screen and (max-width: 900px) {
+    .educationSkillsWrapper {
+        flex-direction: column;
+    }
+    .educationWrapper {
+        width: 100%;
+    }
+    
+    .skillsWrapper {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .resumeWrapper {
+        width: 70%;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .resumeWrapper {
+        width: 80%;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .resumeWrapper {
+        width: 90%;
+    }
 }

@@ -11,6 +11,7 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
+    width: 60%;
 }
 
 .menuContainer {
@@ -24,6 +25,9 @@
 }
 
 .menuBlock ul {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
     padding: 0;
     margin: 0;
     list-style-type: none;
@@ -40,4 +44,35 @@
     display: flex;
     justify-content: center;
     padding: 8px;
+}
+
+@media screen and (max-width: 800px) {
+    .footerContainer {
+        width: 70%;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .footerContainer {
+        width: 80%;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .footerContainer {
+        align-items: center;
+        width: 90%;
+    }
+
+    .menuContainer {
+        flex-direction: column;
+    }
+
+    .menuBlock {
+        justify-content: center;
+    }
+
+    .menuBlock ul {
+        align-items: center;
+    }
 }
