@@ -2,9 +2,7 @@ from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from .serializers import ProfileSerializer, CompanySerializer, ExperienceSerializer, JobDescriptionSerializer, EducationSerializer, SkillsSerializer
-from django.db import IntegrityError
-
-from django.http import JsonResponse
+from django.db.models import Prefetch
 
 from .models import Profile, Company, Experience, JobDescription, Education, Skills
 
@@ -19,7 +17,9 @@ def getProfile(request):
 # GET Work Experience All positions with company info and descriptions
 @api_view(['GET'])
 def getWorkExperience(request):
-    experiences = Experience.objects.all()
+    experiences = Experience.objects.select_related('company').prefetch_related(
+        Prefetch('descriptions', queryset=JobDescription.objects.order_by('bullet'))
+    ).all()
     serializer = ExperienceSerializer(experiences, many=True)
     return Response(serializer.data)
 
