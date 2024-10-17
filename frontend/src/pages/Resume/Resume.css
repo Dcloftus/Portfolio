@@ -1,0 +1,107 @@
+.mainContainer {
+    background-color: var(--background-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 0px;
+}
+
+.resumeWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 60%;
+}
+
+.resumeWrapper h1 {
+    font-weight: 900;
+    color: var(--text-seondary-color);
+}
+
+.profileWrapper {
+    color: var(--text-color);
+}
+
+.profileHeader {
+    display: flex;
+    justify-content: space-between;
+}
+
+.downloadButton {
+    background-color: var(--primary-color);
+    border: none;
+    border-radius: 20px;
+    padding: 10px 20px;
+    color: var(--text-color);
+    font-weight: 800;
+    cursor: pointer;
+}
+
+.downloadButton:hover {
+    background-color: var(--primary-color-hover);
+}
+
+.experienceWrapper {
+    color: var(--text-color);
+}
+
+.experienceContainer {
+    display: flex;
+    gap: 20px;
+}
+
+.timelineContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 0px;
+}
+
+.ballContainer {
+    height: 16px;
+    width: 16px;
+}
+
+.ball {
+    background-color: var(--primary-color);
+    height: 16px;
+    width: 16px;
+    border-radius: 8px;
+}
+
+.line {
+    background-color: var(--text-color);
+    width: 2px;
+    height: 100%;
+    border-radius: 8px;
+}
+
+.detailsContainer {
+
+}
+
+.detailsContainer h3 {
+    color: var(--primary-color);
+}
+
+.labelContainer {
+    display: flex;
+    gap: 20px;
+}
+
+.labeledIcon {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.icon{
+    transform: scale(1.25);
+}
+
+.bullet {
+    list-style:disc outside none;
+    display:list-item;
+    margin-left: 20px;
+}

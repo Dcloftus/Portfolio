@@ -8,8 +8,8 @@ import Footer from './components/Footer/Footer'
 // Pages
 import Home from './pages/Home/Home';
 import Projects from './pages/Projects';
+import Resume from './pages/Resume/Resume';
 import About from './pages/About/About';
-import WorkExperience from './pages/WorkExperience';
 import Contact from './pages/Contact/Contact'
 import Polls from './pages/TestPolls';
 
@@ -23,7 +23,7 @@ function App() {
 					<Route path="/" element={<Home />} />
 					<Route path="/contact" element={<Contact />} />
 					<Route path="/projects" element={<Projects />} />
-					<Route path="/work-experience" element={<WorkExperience />} />
+					<Route path="/Resume" element={<Resume />} />
 					<Route path="/about" element={<About />} />
 					<Route path="/polls" element={<Polls />} />
 

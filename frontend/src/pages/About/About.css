@@ -8,6 +8,7 @@
 }
 
 .mainContainer h1 {
+    font-weight: 900;
     color: var(--text-seondary-color);
 }
 
