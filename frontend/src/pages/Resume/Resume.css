@@ -31,6 +31,8 @@
     background-color: var(--primary-color);
     border: none;
     border-radius: 20px;
+    height: 40px;
+    box-sizing: border-box;
     padding: 10px 20px;
     color: var(--text-color);
     font-weight: 800;

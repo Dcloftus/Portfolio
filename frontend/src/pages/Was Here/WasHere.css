@@ -48,6 +48,8 @@
 .wasHereInput {
     width: 250px;
     padding-left: 20px;
+    height: 40px;
+    box-sizing: border-box;
     font-weight: 400;
     border-radius: 20px;
     border: 2px solid var(--text-seondary-color);
@@ -72,4 +74,18 @@
     height: 24px;
     text-align: center;
     color: var(--text-seondary-color);
+}
+
+@media screen and (max-width: 600px) {
+    .wasHereHeader {
+        width: 200px;
+    }
+
+    .wasHereInputContainer {
+        flex-direction: column;
+    }
+    .wasHereInput {
+        height: 40px;
+    }
+    
 }
