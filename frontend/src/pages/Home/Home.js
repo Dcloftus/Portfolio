@@ -59,11 +59,6 @@ function Home() {
         <div>
             <div className='heroContainer'>
                 <div className='wrapper'>
-                    <div className='StarsContainer'>
-                        <StarLg className='StarLg' />
-                        <StarSm className='StarSm' />
-                        <StarMd className='StarMd' />
-                    </div>
                     <div className='heroContentContainer'>
                         <div className='heroTextContainer'>
                             <h4>Hey there! <div className="wave" ref={waveRef}>👋🏼</div></h4>
@@ -76,11 +71,16 @@ function Home() {
                             <button className='UIFlowButton'/>
                         </div>
                     </div>
-                    <div className='TadpoleContainer'>
-                        <TadpoleLg className='TadpoleLg' />
-                        <TadpoleMd className='TadpoleMd' />
-                        <TadpoleSm className='TadpoleSm' />
-                    </div>
+                </div>
+                <div className='StarsContainer'>
+                    <StarLg className='StarLg' />
+                    <StarSm className='StarSm' />
+                    <StarMd className='StarMd' />
+                </div>
+                <div className='TadpoleContainer'>
+                    <TadpoleLg className='TadpoleLg' />
+                    <TadpoleMd className='TadpoleMd' />
+                    <TadpoleSm className='TadpoleSm' />
                 </div>
                 <img src={hero} alt='Daniel' className='hero' />
             </div>

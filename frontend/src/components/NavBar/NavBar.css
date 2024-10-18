@@ -17,14 +17,8 @@
 .nav-items {
     list-style-type: none;
     display: flex;
-    padding: 0;
-    margin: 0;
+    box-sizing: border-box;
     transition: transform 0.3s ease; /* Smooth shift transition when button appears */
-}
-
-/* Shifts the nav items to the left when the scroll-to-top button appears */
-.nav-items.shift-left {
-    transform: translateX(-10px); /* Shift nav items to the left */
 }
 
 /* List item inside the navbar */
@@ -53,8 +47,6 @@
 
 /* Scroll-to-top container */
 .scrollToTopContainer {
-    position: relative; /* Keep it in the document flow */
-    margin-left: 10px; /* Optional margin to space it out from the nav items */
 }
 
 /* Scroll-to-top button */
@@ -118,4 +110,51 @@
 .navbar ul li a:visited {
     color: white;
     text-decoration: none;
+}
+
+.hamburger {
+    display: none;
+    cursor: pointer;
+    color: var(--text-color);
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        left: auto;
+        right: 10px;
+    }
+    .navbar.open {
+        left: auto;
+        right: 10px;
+        background: none;
+        backdrop-filter: none;
+    }
+    .navbar .nav-items {
+        display: none; /* Hide by default */
+        flex-direction: column;
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: 200px;
+    }
+
+    .nav-items.open {
+        display: flex;
+        background-color: #6d6d6d51;
+        backdrop-filter: blur(6px);
+        border-radius: 30px;
+        padding: 10px 0px;
+    }
+    .hamburger {
+        display: block;
+        height: 40px;
+        width: 40px;
+        border: none;
+        border-radius: 20px;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+    }
 }
