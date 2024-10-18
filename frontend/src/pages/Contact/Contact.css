@@ -10,6 +10,7 @@
     width: 60%;
     display: flex;
     justify-content: space-between;
+    gap: 20px;
 }
 
 .contactContent {
@@ -62,4 +63,32 @@
 
 .contactButton:hover {
     background-color: var(--primary-color-hover);
+}
+
+@media screen and (max-width: 1000px) {
+    .contactContainer {
+        flex-direction: column;
+    }
+    .contactForm input, textarea {
+        width: 100%;
+        box-sizing: border-box;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .contactContainer {
+        width: 70%;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .contactContainer {
+        width: 80%;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .contactContainer {
+        width: 90%;
+    }
 }

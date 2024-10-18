@@ -1,0 +1,47 @@
+version: '3'
+services:
+  frontend:
+    build:
+      context: ./frontend
+    image: portfolio-frontend
+    ports:
+      - "3000:80"
+    networks:
+      - portfolio-network
+
+  backend:
+    build:
+      context: ./backend
+    container_name: portfolio-backend
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./backend:/backend
+    ports:
+      - "8000:8000"
+    networks:
+      - portfolio-network
+    depends_on:
+      - db
+    environment:
+      - DATABASE_URL=postgres://postgres:FellowOde307@db:5432/portfolio  # Update with your actual DB details
+
+  db:
+    image: postgres:13
+    container_name: portfolio-db
+    environment:
+      POSTGRES_DB: portfolio
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: FellowOde307
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - portfolio-network
+
+volumes:
+  postgres_data:
+
+networks:
+  portfolio-network:
+    driver: bridge

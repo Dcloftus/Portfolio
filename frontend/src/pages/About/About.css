@@ -8,6 +8,7 @@
 }
 
 .mainContainer h1 {
+    font-weight: 900;
     color: var(--text-seondary-color);
 }
 
@@ -26,6 +27,7 @@
 
 .imageContainer img {
     width: 240px;
+    border-radius: 20px;
 }
 
 .contentContainer {
@@ -79,4 +81,37 @@
 
 .last-child {
     margin-top: auto;  /* Pushes this child to the end */
-  }
+}
+
+@media screen and (max-width: 800px) {
+    .imageContainer img {
+        width: 150px;
+    }
+    .aboutWrapper {
+        width: 70%;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .aboutMeContainer {
+        flex-direction: column;
+    }
+    .actionContainer button {
+        width: 100%;
+    }
+    .imageContainer img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        object-position: top;
+    }
+    .aboutWrapper {
+        width: 80%;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .aboutWrapper {
+        width: 90%;
+    }
+}

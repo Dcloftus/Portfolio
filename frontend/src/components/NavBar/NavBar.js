@@ -8,6 +8,13 @@ import './NavBar.css';
 function NavBar() {
     const [showScrollToTop, setShowScrollToTop] = useState(false);
 
+    const [isOpen, setIsOpen] = useState(false);
+
+    const toggleMenu = () => {
+      setIsOpen(!isOpen);
+      console.log(isOpen);
+    };
+
     useEffect(() => {
         const handleScroll = () => {
             if (window.scrollY > 50) { // Show button after scrolling down 300px
@@ -29,11 +36,14 @@ function NavBar() {
     };
 
   return (
-    <nav className="navbar m-plus-rounded-1c-black">
-        <ul className={`nav-items ${showScrollToTop ? 'shift-left' : ''}`}>
+    <nav className={`navbar m-plus-rounded-1c-black ${isOpen ? 'open' : ''} ${showScrollToTop ? 'expanded' : ''}`}>
+        <div className="hamburger" onClick={toggleMenu}>
+            ☰
+        </div>
+        <ul className={`nav-items ${isOpen ? 'open' : ''}  ${showScrollToTop ? 'shift-left' : ''}`}>
             <li><Link to="/">Home</Link></li>
-            <li><Link to="/portfolio">Portfolio</Link></li>
             <li><Link to="/projects">Projects</Link></li>
+            <li><Link to="/resume">Resume</Link></li>
             <li><Link to="/about">About Me</Link></li>
             <li><Link to="/contact">Contact</Link></li>
         </ul>

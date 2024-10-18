@@ -1,3 +1,8 @@
+:root {
+    --offset-x: 0px;
+    --offset-y: 0px;
+  }
+
 .heroContainer {
     background-color: var(--background-color);
     color: var(--text-color);
@@ -9,7 +14,6 @@
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    gap: 40px;
 }
 
 .heroContentContainer {
@@ -75,17 +79,23 @@
 
 /* Graphics Positions Drop Shadows and Animations*/
 .StarsContainer {
-    min-height: 100vh;
+    height: 100px;
+    position: absolute;
+    top: 200px;
+    left: 50px;
 }
 
 .TadpoleContainer {
-    min-height: 100vh;
+    height: 100px;
+    position: absolute;
+    right: 80px;
+    bottom: 50px;
 }
 
 .StarLg {
     position: relative;
-    top: 250px;
-    left: -40px;
+    top: calc(0px + var(--offset-y));
+    left: calc(0px + var(--offset-x));
     filter: drop-shadow(5px 5px 50px #FE6B49); /* Offset, blur, color */
     animation: pulse-animation-medium 2s infinite ease-in-out; /* 2s pulse, repeats infinitely */
     animation-delay: 0s; /* 1-second delay before the animation starts */
@@ -93,7 +103,8 @@
 
 .StarMd {
     position: relative;
-    top: 180px;
+    top: calc(-50px + var(--offset-y));
+    left: calc(80px + var(--offset-x));
     filter: drop-shadow(5px 5px 50px #8F3EFF); /* Offset, blur, color */
     animation: pulse-animation-small 2s infinite ease-in-out; /* 2s pulse, repeats infinitely */
     animation-delay: 1s; /* 1-second delay before the animation starts */
@@ -101,8 +112,8 @@
 
 .StarSm {
     position: relative;
-    top: 230px;
-    left: 10px;
+    top: calc(20px + var(--offset-y));
+    left: calc(50px + var(--offset-x));
     filter: drop-shadow(5px 5px 50px #5BFF6B); /* Offset, blur, color */
     animation: pulse-animation-large 2s infinite ease-in-out; /* 2s pulse, repeats infinitely */
     animation-delay: 2s; /* 1-second delay before the animation starts */
@@ -110,8 +121,8 @@
 
 .TadpoleLg {
     position: relative;
-    top: 630px;
-    left: 20px;
+    top: calc(0px - var(--offset-y));
+    left: calc(0px - var(--offset-x));
     filter: drop-shadow(5px 5px 50px #5BFF6B); /* Offset, blur, color */
     animation: pulse-animation-large 2s infinite ease-in-out; /* 2s pulse, repeats infinitely */
     animation-delay: 2s; /* 1-second delay before the animation starts */
@@ -119,8 +130,8 @@
 
 .TadpoleMd {
     position: relative;
-    top: 550px;
-    left: -40px;
+    top: calc(-80px - var(--offset-y));
+    left: calc(-80px - var(--offset-x));
     filter: drop-shadow(5px 5px 50px #8F3EFF); /* Offset, blur, color */
     animation: pulse-animation-medium 2s infinite ease-in-out; /* 2s pulse, repeats infinitely */
     animation-delay: 1s; /* 1-second delay before the animation starts */
@@ -128,8 +139,8 @@
 
 .TadpoleSm {
     position: relative;
-    top: 660px;
-    left: -170px;
+    top: calc(20px - var(--offset-y));
+    left: calc(-200px - var(--offset-x));
     filter: drop-shadow(5px 5px 50px #FE6B49); /* Offset, blur, color */
     animation: pulse-animation-small 2s infinite ease-in-out; /* 2s pulse, repeats infinitely */
     animation-delay: 0s; /* 1-second delay before the animation starts */
@@ -215,9 +226,9 @@
   }
 
 /* Responsive changes */
-@media screen and (max-width: 930px) {
+@media screen and (max-width: 1000px) {
     .heroTextContainer h2 {
-      font-size: 42px;
+        font-size: 42px;
     }
     .heroTextContainer h4 {
         font-size: 30px;
@@ -225,4 +236,74 @@
     .heroTextContainer {
         margin-top: 80px;
     }
-  }
+    .wrapper {
+        gap: 0px;
+    }
+    .StarsContainer {
+        transform: scale(.5);
+    }
+    .TadpoleContainer {
+        transform: scale(.5);
+    }
+    :root {
+        --offset-x: 0px;
+        --offset-y: 30px;
+    }
+}
+@media screen and (max-width: 900px) {
+    .heroTextContainer h2 {
+        font-size: 42px;
+    }
+    .heroTextContainer h4 {
+        font-size: 30px;
+    }
+    .heroTextContainer {
+        margin-top: 80px;
+    }
+    .StarsContainer {
+        left: 30px;
+    }
+    .TadpoleContainer {
+        right: 10px;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .StarsContainer {
+        left: 10px;
+    }
+    .TadpoleContainer {
+        right: -10px;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .StarsContainer {
+        left: -10px;
+    }
+    .TadpoleContainer {
+        right: -30px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .heroContainer {
+        height: 650px;
+    }
+    .heroBackground {
+        width: 300px;
+        height: 220px;
+    }
+    .hero {
+        width: 260px;
+        bottom: 150px;
+    }
+    .UIFlowButton {
+        width: 20px;
+        height: 20px;
+    }
+    .TadpoleContainer {
+        bottom: 150px;
+    }
+    
+}
