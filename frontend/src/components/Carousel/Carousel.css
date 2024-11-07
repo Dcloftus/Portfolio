@@ -1,0 +1,56 @@
+/* Carousel.css */
+.carousel-wrapper {
+    position: relative;
+    left: 0;
+    overflow: hidden;
+  }
+  
+.swiper-wrapper {
+    left: calc(50% - 30%);
+    width: 60%;
+    padding-top: 10px;;
+}
+
+.custom-navigation-wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.custom-navigation {
+    position: relative;
+    justify-content: flex-end;
+    display: flex;
+    width: 60%;
+    gap: 10px;
+}
+  
+.custom-nav-btn {
+    background: #333;
+    color: #fff;
+    border: none;
+    padding: 8px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+  
+.custom-nav-btn:hover {
+    background: #555;
+}
+  
+.carousel-container {
+    width: 100vw;
+}
+  
+.swiper-slide {
+    min-width: 285px;   /* Ensures a fixed width */
+    max-width: 285px;
+    height: 350px;      /* Fixed height */
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.swiper-slide:last-child {
+    margin-right: calc(100vw - 600px);
+}
