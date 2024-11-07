@@ -1,0 +1,50 @@
+.projectCard {
+    height: 340px;
+    width: 280px;
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: column;
+    border-radius: 10px;
+}
+
+.cardContents {
+    margin: 10px;
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.cardContents p {
+    font-size: 12px;
+}
+
+.cardButton {
+    width: 100%;
+    background-color: var(--primary-color);
+    border: none;
+    border-radius: 20px;
+    height: 40px;
+    box-sizing: border-box;
+    padding: 10px 20px;
+    color: var(--text-color);
+    font-weight: 800;
+    cursor: pointer;
+}
+
+.cardButton {
+    padding: 10px 20px;
+    color: white;
+    text-decoration: none;
+    white-space: nowrap;
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+    box-sizing: border-box;
+    transition: transform 0.3s ease;
+}
+
+.cardButton:hover {
+    background-color: var(--primary-color-hover);
+    border-radius: 20px;
+}

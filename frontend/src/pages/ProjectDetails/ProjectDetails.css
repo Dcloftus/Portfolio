@@ -1,0 +1,46 @@
+.projectWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 60%;
+}
+
+.projectWrapper img {
+    width: 250px;
+}
+
+.projectMainDesc {
+
+}
+
+.imageSection {
+    display: flex;
+}
+
+
+/* Responsive */
+@media screen and (max-width: 900px) {
+
+}
+
+@media screen and (max-width: 800px) {
+    .projectWrapper {
+        width: 70%;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .projectWrapper {
+        width: 80%;
+    }
+
+    .imageSection {
+        flex-direction: column;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .projectWrapper {
+        width: 90%;
+    }
+}
