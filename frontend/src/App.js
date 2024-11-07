@@ -7,7 +7,8 @@ import Footer from './components/Footer/Footer'
 
 // Pages
 import Home from './pages/Home/Home';
-import Projects from './pages/Projects';
+import Projects from './pages/Projects/Projects';
+import ProjectDetails from './pages/ProjectDetails/ProjectDetails';
 import Resume from './pages/Resume/Resume';
 import About from './pages/About/About';
 import Contact from './pages/Contact/Contact'
@@ -23,6 +24,7 @@ function App() {
 					<Route path="/" element={<Home />} />
 					<Route path="/contact" element={<Contact />} />
 					<Route path="/projects" element={<Projects />} />
+					<Route path="/projects/:name" element={<ProjectDetails />} />
 					<Route path="/Resume" element={<Resume />} />
 					<Route path="/about" element={<About />} />
 					<Route path="/polls" element={<Polls />} />

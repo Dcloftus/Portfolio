@@ -1,0 +1,11 @@
+.imageCard {
+    height: 340px;
+    width: 280px;
+    border-radius: 10px;
+    background-size: cover;
+    
+}
+
+.imageContainer {
+    width: 340px;
+}

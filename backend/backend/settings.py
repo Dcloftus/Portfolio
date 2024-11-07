@@ -30,7 +30,7 @@ SECRET_KEY = env("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'wasHere.apps.WashereConfig',
     'contact.apps.ContactConfig',
     'resume.apps.ResumeConfig',
+    'projects.apps.ProjectsConfig',
     'corsheaders',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -94,7 +95,6 @@ DATABASES = {
         'PORT': env("DB_PORT"),
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
