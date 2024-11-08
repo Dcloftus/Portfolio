@@ -15,7 +15,13 @@ import environ
 
 # Get environment variables from .env
 env = environ.Env()
+
+# Use for Local Development
 environ.Env.read_env()
+
+# Use for on the server
+#environ.Env.read_env('/srv/env/.env')
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
