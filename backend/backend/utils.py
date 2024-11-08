@@ -9,7 +9,11 @@ import environ
 def get_s3_project_urls(project_name, folders):
     # Get environment variables from .env
     env = environ.Env()
+    # Use for Local Development
     environ.Env.read_env()
+
+    # Use for on the server
+    #environ.Env.read_env('/srv/env/.env')
 
     """
     Retrieves all image URLs from a specific folder in an S3 bucket.
