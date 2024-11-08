@@ -17,10 +17,10 @@ import environ
 env = environ.Env()
 
 # Use for Local Development
-environ.Env.read_env()
+env.read_env()
 
 # Use for on the server
-#environ.Env.read_env('/srv/env/.env')
+#env.read_env('/srv/env/.env')
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
