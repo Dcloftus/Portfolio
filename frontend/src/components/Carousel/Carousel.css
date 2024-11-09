@@ -52,5 +52,5 @@
 }
 
 .swiper-slide:last-child {
-    margin-right: calc(100vw - 600px);
+    margin-right: calc(100vw - 280px);
 }
