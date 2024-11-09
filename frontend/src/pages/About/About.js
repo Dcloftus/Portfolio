@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './About.css'
 
 // Images
@@ -32,7 +33,7 @@ function About() {
                             </div>
                             <div className='location'>
                                 <Pin />
-                                <p>Kent Ohio</p>
+                                <p>Kent, Ohio</p>
                                 <p><span>Wanting to Relocate</span></p>
                             </div>
                         </div>
@@ -40,7 +41,7 @@ function About() {
                             <p>Hey there! Im Daniel, and Im hella passionite for design and other shit! Love creating things and all that stuff and want to work for a company that builds something that I am passionit about. Love Figma, Apple, Aviation.</p>
                         </div>
                         <div className='actionContainer last-child'>
-                            <button>Contact Me</button>
+                            <Link className='contactMeButton' to="/contact">Contact Me</Link>
                         </div>
                     </div>
                 </div>

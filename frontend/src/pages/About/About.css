@@ -83,6 +83,21 @@
     margin-top: auto;  /* Pushes this child to the end */
 }
 
+.contactMeButton {
+    background-color: var(--primary-color);
+    border: none;
+    border-radius: 20px;
+    padding: 10px 20px;
+    color: var(--text-color);
+    text-decoration: none;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+.contactMeButton:hover {
+    background-color: var(--primary-color-hover);
+}
+
 @media screen and (max-width: 800px) {
     .imageContainer img {
         width: 150px;
