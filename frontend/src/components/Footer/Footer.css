@@ -38,6 +38,24 @@
     color: var(--text-seondary-color);
 }
 
+.link a {
+    color: var(--background-color);
+    text-decoration: none;
+}
+
+.link a:hover {
+    text-decoration: underline;
+}
+
+.link a:visited {
+    color: var(--background-color);
+    text-decoration: none;
+}
+
+.link a > .disabled a {
+    color: var(--text-seondary-color);
+}
+
 .copyWrite {
     margin-top: auto;
     font-size: 10px;

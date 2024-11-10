@@ -52,5 +52,38 @@
 }
 
 .swiper-slide:last-child {
-    margin-right: calc(100vw - 600px);
+    margin-right: calc(100vw - 280px);
+}
+
+
+/* On screens that are 600px or less, set the background color to olive */
+@media screen and (max-width: 800px) {
+    .swiper-wrapper {
+        width: 70%;
+        left: calc(50% - 35%);
+        
+    }
+    .custom-navigation {
+        width: 70%;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .swiper-wrapper {
+        width: 80%;
+        left: calc(50% - 40%);
+    }
+    .custom-navigation {
+        width: 80%;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .swiper-wrapper {
+        width: 90%;
+        left: calc(50% - 45%);
+    }
+    .custom-navigation {
+        width: 90%;
+    }
 }

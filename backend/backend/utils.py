@@ -2,30 +2,36 @@
 
 import boto3
 from botocore.exceptions import NoCredentialsError
-from django.conf import settings
 
 import environ
 
-def get_s3_project_urls(project_name, folders):
+def getAWS_Details():
     # Get environment variables from .env
     env = environ.Env()
     # Use for Local Development
-    environ.Env.read_env()
+    env.read_env()
 
     # Use for on the server
-    #environ.Env.read_env('/srv/env/.env')
+    #env.read_env('/srv/env/.env')
 
-    """
-    Retrieves all image URLs from a specific folder in an S3 bucket.
-    """
     s3_client = boto3.client(
         's3',
         aws_access_key_id=env("AWS_ACCESS_KEY_ID"),
         aws_secret_access_key=env("AWS_SECRET_ACCESS_KEY"),
         region_name=env("AWS_REGION")
     )
+
     bucket_name = env("AWS_STORAGE_BUCKET_NAME")
 
+    return s3_client, bucket_name
+
+def get_s3_project_urls(project_name, folders):
+
+    """
+    Retrieves all image URLs from a specific folder in an S3 bucket.
+    """
+    s3_client, bucket_name = getAWS_Details()
+    
     base_path = f'projects/{project_name.replace(" ", "")}/'
 
     s3_urls = {}
@@ -53,3 +59,24 @@ def get_s3_project_urls(project_name, folders):
             print("Credentials not available")
 
     return s3_urls
+
+def get_s3_resume_url():
+
+    """
+    Retrieves link to Resume in S3 bucket.
+    """
+    s3_client, bucket_name = getAWS_Details()
+
+    resume_key = f'resume/daniel_loftus_resume.pdf'
+
+    try:
+        # Generate a pre-signed URL for the resume
+        url = s3_client.generate_presigned_url(
+            'get_object',
+            Params={'Bucket': bucket_name, 'Key': resume_key},
+            ExpiresIn=3600  # URL expiration time in seconds (e.g., 1 hour)
+        )
+        return url
+    except NoCredentialsError:
+        print("Credentials not available")
+        return None
