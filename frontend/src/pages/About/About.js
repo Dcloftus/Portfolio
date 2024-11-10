@@ -27,8 +27,8 @@ function About() {
                                     <h2>Daniel Loftus</h2>
                                 </div>
                                 <div style={{display:'flex', gap:'5px', alignItems:'center'}}>
-                                    <LinkedIn />
-                                    <Instagram />
+                                    <a href='https://www.instagram.com/daniel_loftus34'><Instagram /></a>
+                                    <a href='http://linkedin.com/in/daniel-loftus-384a46182'><LinkedIn /></a>
                                 </div>
                             </div>
                             <div className='location'>
@@ -38,7 +38,9 @@ function About() {
                             </div>
                         </div>
                         <div className='descriptionContainer'>
-                            <p>Hey there! Im Daniel, and Im hella passionite for design and other shit! Love creating things and all that stuff and want to work for a company that builds something that I am passionit about. Love Figma, Apple, Aviation.</p>
+                            <p>Hi there! I'm Daniel! A software developer with a knack for building things and bringing creative ideas to life. My professional work revolves around coding, but that’s just the beginning. I have a huge passion for design and engineering—whether I’m diving into UI/UX for web and mobile apps (like this portfolio!) or working on fun, small software projects that challenge me to learn something new.</p>
+                            <p>Outside of work, you’ll find me experimenting with 3D printing and woodworking, where I can blend tech and craftsmanship. There’s something really satisfying about designing, prototyping, and creating tangible things from scratch. I believe that good design is more than just aesthetics; it’s about making something intuitive, engaging, and enjoyable to use.</p>
+                            <p>In short, I'm a techie with a creative side, always on the lookout for my next project—whether it's in code or on the workbench. If you’re curious about my projects or just want to chat about design, engineering, or the best 3D printing hacks, don’t hesitate to reach out!</p>
                         </div>
                         <div className='actionContainer last-child'>
                             <Link className='contactMeButton' to="/contact">Contact Me</Link>

@@ -40,8 +40,8 @@
 
 }
 
-.descriptionContainer {
-
+.descriptionContainer p {
+    margin-bottom: 20px;
 }
 
 .actionContainer {
