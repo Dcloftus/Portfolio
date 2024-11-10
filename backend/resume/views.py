@@ -1,9 +1,11 @@
 from rest_framework import status
+from rest_framework import generics
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from .serializers import ProfileSerializer, CompanySerializer, ExperienceSerializer, JobDescriptionSerializer, EducationSerializer, SkillsSerializer
 from django.db.models import Prefetch
 
+from backend.utils import get_s3_resume_url
+from .serializers import ProfileSerializer, CompanySerializer, ExperienceSerializer, JobDescriptionSerializer, EducationSerializer, SkillsSerializer
 from .models import Profile, Company, Experience, JobDescription, Education, Skills
 
 # API Needs
@@ -36,3 +38,14 @@ def getSkills(request):
     skills = Skills.objects.all()
     serializer = SkillsSerializer(skills, many=True)
     return Response(serializer.data)
+
+@api_view(['GET'])
+def getPDFLink(request):
+    # Get S3 URL
+    s3_url = get_s3_resume_url()
+    
+    # Check if the URL was retrieved successfully
+    if s3_url:
+        return Response({'url': s3_url}, status=status.HTTP_200_OK)
+    else:
+        return Response({'error': 'Could not retrieve resume link'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)

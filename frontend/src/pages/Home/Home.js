@@ -3,6 +3,7 @@ import './Home.css';
 
 // Sections
 import WasHere from '../Was Here/WasHere';
+import Projects from '../Projects/Projects'
 import AboutMe from '../About/About'
 import Contact from '../Contact/Contact'
 
@@ -68,6 +69,7 @@ function Home() {
                             </div>
                         </div>
                         <div className='heroBackground'>
+                            <img src={hero} alt='Daniel' className='hero' />
                             <button className='UIFlowButton'/>
                         </div>
                     </div>
@@ -82,9 +84,9 @@ function Home() {
                     <TadpoleMd className='TadpoleMd' />
                     <TadpoleSm className='TadpoleSm' />
                 </div>
-                <img src={hero} alt='Daniel' className='hero' />
             </div>
             <WasHere />
+            <Projects />
             <AboutMe />
             <div style={{height:'80px', backgroundColor: `var(--background-color)`}}>
                 <Banner text="Get in Touch" icon={<SendIcon />} direction="backward" rotation={-2} />

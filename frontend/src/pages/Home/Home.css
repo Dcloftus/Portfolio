@@ -6,23 +6,22 @@
 .heroContainer {
     background-color: var(--background-color);
     color: var(--text-color);
-    height: 100vh;
+    height: 95vh;
 }
 
 .wrapper {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
 }
 
 .heroContentContainer {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: space-between;
     width: fit-content;
-    min-height: 100vh;
-    gap: 90px;
+    height: 95vh;
 }
 
 .heroTextContainer {
@@ -54,7 +53,8 @@
     background-position: center;        /* Center the background image */
     background-repeat: no-repeat;       /* Prevent image repetition */
     width: 450px;                         /* Full width of the container */
-    height: 330px;  
+    height: 330px;
+    margin-bottom: 150px;
 }
 
 .UIFlowButton {
@@ -70,11 +70,11 @@
 }
 
 .hero {
-    position: absolute;
+    position: relative;
     width: 360px;
     left: 50%;
     transform: translateX(-50%);
-    bottom: -15px;
+    top: -50px;
 }
 
 /* Graphics Positions Drop Shadows and Animations*/
@@ -287,16 +287,19 @@
 }
 
 @media screen and (max-width: 600px) {
-    .heroContainer {
-        height: 650px;
+    .heroTextContainer h2 {
+        font-size: 30px;
+    }
+    .heroTextContainer h4 {
+        font-size: 24px;
     }
     .heroBackground {
         width: 300px;
         height: 220px;
+        margin-bottom: 100px;
     }
     .hero {
         width: 260px;
-        bottom: 150px;
     }
     .UIFlowButton {
         width: 20px;
@@ -305,5 +308,26 @@
     .TadpoleContainer {
         bottom: 150px;
     }
-    
+}
+
+@media screen and (max-width: 600px) {
+    @media screen and (max-height: 650px) {
+        .heroContainer {
+            height: 600px;
+        }
+        .heroContentContainer {
+            height: 600px;
+        }
+    }
+}
+
+@media screen and (min-width: 600px) {
+    @media screen and (max-height: 800px) {
+        .heroContainer {
+            height: 780px;
+        }
+        .heroContentContainer {
+            height: 780px;
+        }
+    }
 }
