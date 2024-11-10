@@ -7,4 +7,5 @@ urlpatterns = [
     path("workExperience", views.getWorkExperience, name="getWorkExperience"),
     path("education", views.getEducation, name="getEducation"),
     path("skills", views.getSkills, name="getSkills"),
+    path("download", views.getPDFLink, name="getPDFLink"),
 ]

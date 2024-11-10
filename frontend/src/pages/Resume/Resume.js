@@ -9,6 +9,7 @@ function Resume() {
     const [experiences, setExperiences] = useState([]);
     const [educations, setEducations] = useState([]);
     const [skills, setSkills] = useState([]);
+    const [resume, setResume] = useState([]);
 
     function getProfile() {
         fetch(`${process.env.REACT_APP_API_BASE_URL}/resume/profile`)
@@ -46,11 +47,21 @@ function Resume() {
         .catch((error) => console.error('Error fetching Skills:', error));
     }
 
+    function getResume() {
+        fetch(`${process.env.REACT_APP_API_BASE_URL}/resume/download`)
+        .then((response) => response.json())
+        .then((data) => {
+            setResume(data);
+        })
+        .catch((error) => console.error('Error fetching Resume Download:', error));
+    }
+
     useEffect(() => {
         getProfile();
         getWorkExperience();
         getEducation();
         getSkills();
+        getResume();
     }, []);
 
     function getYearFromDate(dateString) {
@@ -63,7 +74,9 @@ function Resume() {
                 <div className='profileWrapper'>
                     <div className='profileHeader'>
                         <h1>Profile</h1>
-                        <button className='downloadButton'>Download PDF</button>
+                        <a href={resume.url} download target="_blank" rel="noopener noreferrer">
+                            <button className='downloadButton'>Download PDF</button>
+                        </a>
                     </div>
                     <br/>
                     {profiles.map(profile => (
