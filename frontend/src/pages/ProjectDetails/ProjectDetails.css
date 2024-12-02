@@ -17,6 +17,19 @@
     display: flex;
 }
 
+.overflowGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 10px;
+}
+
+.overflowGrid img {
+    width: 100%;
+    height: auto;
+    object-fit: cover; /* Ensures images fill their space while maintaining aspect ratio */
+    border-radius: 5px; /* Optional: adds rounded corners */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Optional: adds shadow for better visual appeal */
+}
 
 /* Responsive */
 @media screen and (max-width: 900px) {
