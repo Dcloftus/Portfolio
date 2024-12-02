@@ -71,6 +71,13 @@ const ProjectDetails = () => {
                         <p key={detail.id}>{detail.text}</p>
                     ))
                 )}
+                <div className='overflowGrid'>
+                    {project.overflow && project.overflow.length > 0 && (
+                        project.overflow.map(image => (
+                            <img key={image.id} src={image} />
+                        ))
+                    )}
+                </div>
             </div>
     </div>
   );
