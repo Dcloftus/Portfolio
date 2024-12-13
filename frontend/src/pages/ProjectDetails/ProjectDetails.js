@@ -41,7 +41,7 @@ const ProjectDetails = () => {
                 )}
                 {project.video && project.video.length > 0 && (
                     project.video.map((videoUrl, index) => (
-                        <video key={index} controls>
+                        <video key={index} autoPlay loop muted controls>
                             <source src={videoUrl} type="video/mp4" />
                             Your browser does not support the video tag.
                         </video>

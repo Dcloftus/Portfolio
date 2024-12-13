@@ -41,7 +41,7 @@ class TextSection(models.Model):
         super().save(*args, **kwargs)
 
     def __str__(self):
-        return f"{self.section_type.capitalize()} - Order: {self.order}"
+        return f"{self.project.name}: {self.section_type.capitalize()} ({self.order})"
 
 # # Description (one to many)
 # class Description(models.Model):
