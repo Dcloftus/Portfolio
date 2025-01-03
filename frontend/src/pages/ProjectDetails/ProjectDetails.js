@@ -31,7 +31,7 @@ const ProjectDetails = () => {
     <div className='mainContainer'>
             <div className='projectWrapper'>
                 <div className='profileHeader'>
-                    <h1>Project</h1>
+                    <h1>{name}</h1>
                 </div>
                 <img src={project.logo}/>
                 {project.main_description && (
