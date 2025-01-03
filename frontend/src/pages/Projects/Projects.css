@@ -29,9 +29,61 @@
     align-items: center;
 }
 
+/* Loading Skeleton Animation*/
+
+.loadingWrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.loadingContainer {
+    display: flex;
+    overflow-x: visible;
+    gap: 10px;
+    padding-top: 50px;
+    width: 60%;
+}
+
+.loadingCard {
+    height: 340px;
+    width: 280px;
+    background-color: rgba(0, 0, 0, 0.209);
+    border-radius: 10px;
+    flex: 0 0 auto;
+    margin-right: 10px;
+    position: relative;  /* Required for pseudo-element positioning */
+    overflow: hidden;    /* Prevent shine from overflowing */
+}
+
+.loadingCard::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -150%;
+    width: 200%;
+    height: 100%;
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0) 30%, rgba(81, 81, 81, 0.3) 50%, rgba(255, 255, 255, 0) 70%);
+    transform: skewX(-15deg);
+    animation: shine 2.5s infinite;
+}
+
+@keyframes shine {
+    0% {
+        left: -200%;
+    }
+    100% {
+        left: 200%;
+    }
+}
+
 /* On screens that are 600px or less, set the background color to olive */
 @media screen and (max-width: 800px) {
     .projectsWrapper {
+        width: 70%;
+    }
+    .loadingContainer {
         width: 70%;
     }
 }
@@ -40,10 +92,16 @@
     .projectsWrapper {
         width: 80%;
     }
+    .loadingContainer {
+        width: 80%;
+    }
 }
 
 @media screen and (max-width: 600px) {
     .projectsWrapper {
+        width: 90%;
+    }
+    .loadingContainer {
         width: 90%;
     }
 }

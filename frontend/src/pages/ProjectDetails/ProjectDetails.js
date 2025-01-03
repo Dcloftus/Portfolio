@@ -9,14 +9,19 @@ import './ProjectDetails.css';
 const ProjectDetails = () => {
     const { name } = useParams(); // Get project name from URL
     const [project, setProject] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     function fetchProjectDetails() {
         fetch(`${process.env.REACT_APP_API_BASE_URL}/projects/${name}`)
         .then((response) => response.json())
         .then((data) => {
             setProject(data);
+            setLoading(false); // Set loading to false once data is fetched
         })
-        .catch((error) => console.error('Error fetching Project:' + name, error));
+        .catch((error) => {
+            console.error('Error fetching Project:' + name, error)
+            setLoading(false); // Set loading to false even if there's an error
+        });
     }
 
     useEffect(() => {
@@ -29,9 +34,26 @@ const ProjectDetails = () => {
 
   return (
     <div className='mainContainer'>
+        {loading ? ( // Show loading animation if still loading
+            <div className="detailsLoadingContainer">
+                <div className='loadingElement' style={{height:'50px', width: '150px'}}/>
+                <div className='loadingElement' style={{height:'50px', width: '250px'}}/>
+                <div className='loadingParagraph'>
+                    <div className='loadingElement' style={{height:'35px', width: '80%'}}/>
+                    <div className='loadingElement' style={{height:'35px', width: '75%'}}/>
+                    <div className='loadingElement' style={{height:'35px', width: '90%'}}/>
+                </div>
+                <div className='loadingParagraph'>
+                    <div className='loadingElement' style={{height:'35px', width: '93%'}}/>
+                    <div className='loadingElement' style={{height:'35px', width: '72%'}}/>
+                    <div className='loadingElement' style={{height:'35px', width: '44%'}}/>
+                </div>
+                <div className='loadingElement' style={{height:'425px', width: '100%'}}/>
+            </div>
+        ) : (
             <div className='projectWrapper'>
                 <div className='profileHeader'>
-                    <h1>Project</h1>
+                    <h1>{name}</h1>
                 </div>
                 <img src={project.logo}/>
                 {project.main_description && (
@@ -79,6 +101,7 @@ const ProjectDetails = () => {
                     )}
                 </div>
             </div>
+        )}
     </div>
   );
 };

@@ -30,6 +30,49 @@
     border-radius: 5px; /* Optional: adds rounded corners */
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Optional: adds shadow for better visual appeal */
 }
+/* Loading Skeleton Animation*/
+.detailsLoadingContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 60%;
+}
+
+.loadingElement {
+    background-color: rgba(0, 0, 0, 0.209);
+    border-radius: 10px;
+    flex: 0 0 auto;
+    margin-right: 10px;
+    position: relative;  /* Required for pseudo-element positioning */
+    overflow: hidden;    /* Prevent shine from overflowing */
+}
+
+.loadingElement::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -150%;
+    width: 200%;
+    height: 100%;
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0) 30%, rgba(81, 81, 81, 0.3) 50%, rgba(255, 255, 255, 0) 70%);
+    transform: skewX(-15deg);
+    animation: shine 2.5s infinite;
+}
+
+.loadingParagraph {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+@keyframes shine {
+    0% {
+        left: -200%;
+    }
+    100% {
+        left: 200%;
+    }
+}
 
 /* Responsive */
 @media screen and (max-width: 900px) {
