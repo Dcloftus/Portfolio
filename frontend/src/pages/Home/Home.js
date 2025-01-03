@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import './Home.css';
 
 // Sections
@@ -25,6 +25,9 @@ import { ReactComponent as TadpoleSm } from '../../assets/icons/TadpoleSm.svg';
 function Home() {
     const waveRef = useRef(null);
     const timeoutIdRef = useRef(null);  // Ref to store the timeout ID
+    const [UIFlow, setUIFlow] = useState(false);
+    const [shouldRender, setShouldRender] = useState(false);
+
 
     useEffect(() => {
         function randomWave() {
@@ -56,6 +59,16 @@ function Home() {
         };
     }, []);
 
+    const triggerUIPopup = () => {
+        setShouldRender(true);
+        setTimeout(() => setUIFlow(true), 10);  // Delay to trigger fade-in
+
+        setTimeout(() => {
+            setUIFlow(false);
+            setTimeout(() => setShouldRender(false), 500); // Wait for fade-out to finish
+        }, 3000);
+    };
+
     return (
         <div>
             <div className='heroContainer'>
@@ -70,7 +83,12 @@ function Home() {
                         </div>
                         <div className='heroBackground'>
                             <img src={hero} alt='Daniel' className='hero' />
-                            <button className='UIFlowButton'/>
+                            <button className='UIFlowButton' onClick={triggerUIPopup}/>
+                            {shouldRender && (
+                                <div className={`UIFlowPopup ${UIFlow ? 'fadeIn' : 'fadeOut'}`}>
+                                    <p>Feels like a button right?!</p>
+                                </div>
+                            )}
                         </div>
                     </div>
                 </div>
