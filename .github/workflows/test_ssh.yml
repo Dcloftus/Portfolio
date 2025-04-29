@@ -21,6 +21,7 @@ jobs:
             echo "✅ SSH connection successful"
             whoami
             uname -a
+            sudo - su root
             cd /srv/Portfolio
             touch test.txt
           '
