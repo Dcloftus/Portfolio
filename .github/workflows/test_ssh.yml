@@ -17,6 +17,8 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: 22
           script: |
+            echo "Running SSH command:"
+            echo "ssh -i ${{ secrets.SSH_PRIVATE_KEY }} -o StrictHostKeyChecking=no -p 22 ${{ secrets.SSH_USERNAME }}@${{ secrets.HOST }}"
             echo "Running command on server"
             uname -a
             whoami
