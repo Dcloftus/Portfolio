@@ -9,13 +9,16 @@ jobs:
   test-ssh:
     runs-on: ubuntu-latest
     steps:
-      - name: Test SSH Connection to EC2
+      - name: SSH into server
         uses: appleboy/ssh-action@v0.1.0
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: 22
           script: |
-            echo "Connected successfully!"
+            echo "Running command on server"
             uname -a
             whoami
+        env:
+          DEBUG: true  # Enable debugging for the SSH action
