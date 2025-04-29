@@ -10,65 +10,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: SSH into server
-        uses: appleboy/ssh-action@v0.1.0
-        with:
-          host: ec2-18-224-10-91.us-east-2.compute.amazonaws.com  # Replace with your actual EC2 instance public DNS/IP
-          username: ubuntu  # Replace with your EC2 username (typically 'ubuntu' for Ubuntu EC2 instances)
-          key: |
-            -----BEGIN OPENSSH PRIVATE KEY-----
-            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
-            -----END OPENSSH PRIVATE KEY-----
-          port: 22
-          script: |
-            echo "Running SSH command:"
-            echo "ssh -i /path/to/github-actions-key -o StrictHostKeyChecking=no -p 22 ubuntu@ec2-18-224-10-91.us-east-2.compute.amazonaws.com"
-            uname -a
-            whoami
         env:
-          DEBUG: true  # Enable debugging for the SSH action
+          PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          HOSTNAME: ${{ secrets.SSH_HOST }}
+          USER_NAME: ${{ secrets.SSH_USERNAME }}
+
+        run: |
+          echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
+          ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOSTNAME} '
+            echo "✅ SSH connection successful"
+            whoami
+            uname -a
+          '
