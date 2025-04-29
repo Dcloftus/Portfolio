@@ -18,9 +18,8 @@ jobs:
           port: 22
           script: |
             echo "Running SSH command:"
-            echo "ssh -i ${{ secrets.SSH_PRIVATE_KEY }} -o StrictHostKeyChecking=no -p 22 ${{ secrets.SSH_USERNAME }}@${{ secrets.HOST }}"
-            echo "Running command on server"
+            echo "ssh -i ${SSH_PRIVATE_KEY} -vvv -o StrictHostKeyChecking=no -p 22 ${{ secrets.SSH_USERNAME }}@${{ secrets.HOST }}"
             uname -a
             whoami
         env:
-          DEBUG: true  # Enable debugging for the SSH action
+          DEBUG: true
