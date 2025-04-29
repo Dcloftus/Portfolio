@@ -1,7 +1,9 @@
 name: Test EC2 SSH Connection
 
 on:
-  workflow_dispatch:  # Allows manual triggering from GitHub UI
+  push:
+    branches: [develop]
+  workflow_dispatch:
 
 jobs:
   test-ssh:
