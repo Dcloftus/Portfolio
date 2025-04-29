@@ -1,0 +1,42 @@
+name: Deploy to EC2
+
+on:
+  pull_request:
+    branches:
+      - main
+    types:
+      - opened
+      - synchronize
+      - reopened
+      jobs:
+  deploy:
+    runs-on: ubuntu-latest   # Run on an Ubuntu environment
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3  # Checkout the latest code
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2  # Set up Docker buildx for multi-platform builds
+
+      - name: Cache Docker layers
+        uses: actions/cache@v2
+        with:
+          path: ~/.docker/cache
+          key: ${{ runner.os }}-build-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-build-
+
+      - name: Build and push Docker images
+        run: |
+          docker-compose build frontend backend  # Builds both frontend and backend services
+      - name: Deploy to EC2
+        uses: appleboy/ssh-action@v0.1.0  # GitHub Action for SSH
+        with:
+          host: ${{ secrets.HOST }}   # EC2 instance IP (added to secrets)
+          username: ${{ secrets.SSH_USERNAME }}  # SSH username, e.g. ubuntu
+          key: ${{ secrets.SSH_PRIVATE_KEY }}   # SSH private key
+          script: |
+            cd /srv/Portfolio  # Navigate to your project directory on EC2
+            git pull origin main  # Ensure the latest code is pulled from main branch
+            docker-compose down  # Stop any existing containers
+            docker-compose up -d  # Start the updated containers in detached mode
