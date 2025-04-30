@@ -39,27 +39,30 @@ jobs:
             echo "🧼 Pruning old Docker build cache..."
             docker builder prune -f
 
-            echo "📦 Rebuilding frontend container..."
+            echo "📦 Rebuilding Frontend container..."
             docker-compose build frontend
 
-            echo "🗄️ Rebuilding backend container and applying migrations..."
-
-            # echo "Running makemigrations..."
-            # MIGRATIONS_OUTPUT=$(docker-compose run --rm backend python manage.py makemigrations)
-
-            # echo "$MIGRATIONS_OUTPUT"
-
-            # if echo "$MIGRATIONS_OUTPUT" | grep -qv "No changes detected"; then
-            #   echo "Running migrate..."
-            #   docker-compose run --rm backend python manage.py migrate
-            # else
-            #   echo "No model changes detected; skipping migrate."
-            # fi
-
+            echo "📦 Rebuilding Backend container..."
             docker-compose build backend
 
             echo "🚀 Bringing up all containers..."
             docker-compose up -d
+
+            echo "⏳ Waiting for DB to be ready..."
+            until docker-compose exec backend pg_isready -h db -U your_db_user; do
+              sleep 1
+            done
+
+            echo "🗄️ Django migrations..."
+            MIGRATIONS_OUTPUT=$(docker-compose exec backend python manage.py makemigrations 2>&1)
+            echo "$MIGRATIONS_OUTPUT"
+
+            if echo "$MIGRATIONS_OUTPUT" | grep -qv "No changes detected"; then
+              echo "Running migrate..."
+              docker-compose exec backend python manage.py migrate
+            else
+              echo "No model changes detected; skipping migrate."
+            fi
 
             echo "✅ Deployment complete!"
           EOF
