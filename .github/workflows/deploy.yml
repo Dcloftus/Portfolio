@@ -8,35 +8,65 @@ on:
       - opened
       - synchronize
       - reopened
-      jobs:
+
+jobs:
   deploy:
-    runs-on: ubuntu-latest   # Run on an Ubuntu environment
+    runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3  # Checkout the latest code
+      - name: Checkout repo
+        uses: actions/checkout@v3
 
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v2  # Set up Docker buildx for multi-platform builds
-
-      - name: Cache Docker layers
-        uses: actions/cache@v2
-        with:
-          path: ~/.docker/cache
-          key: ${{ runner.os }}-build-${{ github.sha }}
-          restore-keys: |
-            ${{ runner.os }}-build-
-
-      - name: Build and push Docker images
+      - name: Setup SSH and deploy
+        env:
+          PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          HOSTNAME: ${{ secrets.SSH_HOST }}
+          USER_NAME: ${{ secrets.SSH_USERNAME }}
         run: |
-          docker-compose build frontend backend  # Builds both frontend and backend services
-      - name: Deploy to EC2
-        uses: appleboy/ssh-action@v0.1.0  # GitHub Action for SSH
-        with:
-          host: ${{ secrets.HOST }}   # EC2 instance IP (added to secrets)
-          username: ${{ secrets.SSH_USERNAME }}  # SSH username, e.g. ubuntu
-          key: ${{ secrets.SSH_PRIVATE_KEY }}   # SSH private key
-          script: |
-            cd /srv/Portfolio  # Navigate to your project directory on EC2
-            git pull origin main  # Ensure the latest code is pulled from main branch
-            docker-compose down  # Stop any existing containers
-            docker-compose up -d  # Start the updated containers in detached mode
+          echo "$PRIVATE_KEY" > private_key.pem
+          chmod 600 private_key.pem
+
+          ssh -o StrictHostKeyChecking=no -i private_key.pem $USER_NAME@$HOSTNAME << 'EOF'
+            cd /srv/Portfolio
+
+            echo "🛑 Stopping all services..."
+            docker-compose down
+
+            echo "🔍 Checking for local PostgreSQL..."
+            if sudo lsof -i :5432; then
+              echo "⚠️ PostgreSQL is running locally. Stopping..."
+              sudo service postgresql stop
+            else
+              echo "✅ No local PostgreSQL running"
+            fi
+
+            echo "🧼 Pruning old Docker build cache..."
+            docker builder prune -f
+
+            echo "📦 Rebuilding frontend container..."
+            docker-compose build frontend
+
+            echo "🗄️ Rebuilding backend container and applying migrations..."
+
+            echo "Running makemigrations..."
+            MIGRATIONS_OUTPUT=$(docker-compose run --rm backend python manage.py makemigrations)
+
+            echo "$MIGRATIONS_OUTPUT"
+
+            if echo "$MIGRATIONS_OUTPUT" | grep -qv "No changes detected"; then
+              echo "Running migrate..."
+              docker-compose run --rm backend python manage.py migrate
+            else
+              echo "No model changes detected; skipping migrate."
+            fi
+
+            docker-compose build backend
+
+            echo "🚀 Bringing up all containers..."
+            docker-compose up -d
+
+            echo "✅ Deployment complete!"
+          EOF
+
+      - name: Cleanup SSH key
+        run: rm -f private_key.pem
