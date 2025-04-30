@@ -44,17 +44,17 @@ jobs:
 
             echo "🗄️ Rebuilding backend container and applying migrations..."
 
-            echo "Running makemigrations..."
-            MIGRATIONS_OUTPUT=$(docker-compose run --rm backend python manage.py makemigrations)
+            # echo "Running makemigrations..."
+            # MIGRATIONS_OUTPUT=$(docker-compose run --rm backend python manage.py makemigrations)
 
-            echo "$MIGRATIONS_OUTPUT"
+            # echo "$MIGRATIONS_OUTPUT"
 
-            if echo "$MIGRATIONS_OUTPUT" | grep -qv "No changes detected"; then
-              echo "Running migrate..."
-              docker-compose run --rm backend python manage.py migrate
-            else
-              echo "No model changes detected; skipping migrate."
-            fi
+            # if echo "$MIGRATIONS_OUTPUT" | grep -qv "No changes detected"; then
+            #   echo "Running migrate..."
+            #   docker-compose run --rm backend python manage.py migrate
+            # else
+            #   echo "No model changes detected; skipping migrate."
+            # fi
 
             docker-compose build backend
 
