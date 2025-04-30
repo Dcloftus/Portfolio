@@ -1,0 +1,72 @@
+name: Deploy to EC2
+
+on:
+  pull_request:
+    branches:
+      - main
+    types:
+      - opened
+      - synchronize
+      - reopened
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Setup SSH and deploy
+        env:
+          PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          HOSTNAME: ${{ secrets.SSH_HOST }}
+          USER_NAME: ${{ secrets.SSH_USERNAME }}
+        run: |
+          echo "$PRIVATE_KEY" > private_key.pem
+          chmod 600 private_key.pem
+
+          ssh -o StrictHostKeyChecking=no -i private_key.pem $USER_NAME@$HOSTNAME << 'EOF'
+            cd /srv/Portfolio
+
+            echo "🛑 Stopping all services..."
+            docker-compose down
+
+            echo "🔍 Checking for local PostgreSQL..."
+            if sudo lsof -i :5432; then
+              echo "⚠️ PostgreSQL is running locally. Stopping..."
+              sudo service postgresql stop
+            else
+              echo "✅ No local PostgreSQL running"
+            fi
+
+            echo "🧼 Pruning old Docker build cache..."
+            docker builder prune -f
+
+            echo "📦 Rebuilding frontend container..."
+            docker-compose build frontend
+
+            echo "🗄️ Rebuilding backend container and applying migrations..."
+
+            echo "Running makemigrations..."
+            MIGRATIONS_OUTPUT=$(docker-compose run --rm backend python manage.py makemigrations)
+
+            echo "$MIGRATIONS_OUTPUT"
+
+            if echo "$MIGRATIONS_OUTPUT" | grep -qv "No changes detected"; then
+              echo "Running migrate..."
+              docker-compose run --rm backend python manage.py migrate
+            else
+              echo "No model changes detected; skipping migrate."
+            fi
+
+            docker-compose build backend
+
+            echo "🚀 Bringing up all containers..."
+            docker-compose up -d
+
+            echo "✅ Deployment complete!"
+          EOF
+
+      - name: Cleanup SSH key
+        run: rm -f private_key.pem
