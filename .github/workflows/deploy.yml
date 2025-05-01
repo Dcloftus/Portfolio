@@ -51,20 +51,31 @@ jobs:
             echo "⏳ Waiting 15sec for PostgreSQL..."
             sleep 15
 
-            echo "🗄️ Django migrations..."
-            MIGRATIONS_OUTPUT=$(docker-compose run --rm backend python manage.py makemigrations 2>&1)
+            # echo "🗄️ Django migrations..."
+            # MIGRATIONS_OUTPUT=$(docker-compose run --rm backend python manage.py makemigrations 2>&1)
 
-            echo "$MIGRATIONS_OUTPUT"
+            # echo "$MIGRATIONS_OUTPUT"
 
-            if echo "$MIGRATIONS_OUTPUT" | grep -qv "No changes detected"; then
-              echo "Running migrate..."
-              docker-compose run --rm backend python manage.py migrate
-            else
-              echo "No model changes detected; skipping migrate."
-            fi
+            # if echo "$MIGRATIONS_OUTPUT" | grep -qv "No changes detected"; then
+            #   echo "Running migrate..."
+            #   docker-compose run --rm backend python manage.py migrate
+            # else
+            #   echo "No model changes detected; skipping migrate."
+            # fi
 
             echo "✅ Deployment complete!"
           EOF
 
       - name: Cleanup SSH key
         run: rm -f private_key.pem
+
+
+# To clean up orphaned childern
+# echo "🧹 Cleaning up orphaned docker-proxy on port 443..."
+# PIDS=$(sudo lsof -ti :443)
+# if [ -n "$PIDS" ]; then
+#   echo "Found processes on port 443: $PIDS. Killing..."
+#   sudo kill -9 $PIDS
+# else
+#   echo "✅ No orphaned processes on port 443"
+# fi
