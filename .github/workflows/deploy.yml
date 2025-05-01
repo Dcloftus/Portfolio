@@ -45,6 +45,15 @@ jobs:
             echo "📦 Rebuilding Backend container..."
             docker-compose build backend
 
+            echo "🧹 Cleaning up orphaned docker-proxy on port 443..."
+            PIDS=$(sudo lsof -ti :443)
+            if [ -n "$PIDS" ]; then
+              echo "Found processes on port 443: $PIDS. Killing..."
+              sudo kill -9 $PIDS
+            else
+              echo "✅ No orphaned processes on port 443"
+            fi
+
             echo "🚀 Bringing up all containers..."
             docker-compose up -d
 
