@@ -77,14 +77,3 @@ jobs:
 
       - name: Cleanup SSH key
         run: rm -f private_key.pem
-
-
-# To clean up orphaned childern
-# echo "🧹 Cleaning up orphaned docker-proxy on port 443..."
-# PIDS=$(sudo lsof -ti :443)
-# if [ -n "$PIDS" ]; then
-#   echo "Found processes on port 443: $PIDS. Killing..."
-#   sudo kill -9 $PIDS
-# else
-#   echo "✅ No orphaned processes on port 443"
-# fi
