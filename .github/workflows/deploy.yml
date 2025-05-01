@@ -52,12 +52,13 @@ jobs:
             sleep 15
 
             echo "🗄️ Django migrations..."
-            MIGRATIONS_OUTPUT=$(docker-compose exec backend python manage.py makemigrations 2>&1)
+            MIGRATIONS_OUTPUT=$(docker-compose run --rm backend python manage.py makemigrations 2>&1)
+
             echo "$MIGRATIONS_OUTPUT"
 
             if echo "$MIGRATIONS_OUTPUT" | grep -qv "No changes detected"; then
               echo "Running migrate..."
-              docker-compose exec backend python manage.py migrate
+              docker-compose run --rm backend python manage.py migrate
             else
               echo "No model changes detected; skipping migrate."
             fi
