@@ -16,7 +16,7 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
-    width: 60%;
+    width: 80%;
 }
 
 .aboutMeContainer {
@@ -102,9 +102,6 @@
     .imageContainer img {
         width: 150px;
     }
-    .aboutWrapper {
-        width: 70%;
-    }
 }
 
 @media screen and (max-width: 700px) {
@@ -119,9 +116,6 @@
         height: 200px;
         object-fit: cover;
         object-position: top;
-    }
-    .aboutWrapper {
-        width: 80%;
     }
 }
 

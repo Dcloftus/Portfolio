@@ -104,6 +104,9 @@ function Home() {
                 </div>
             </div>
             <WasHere />
+            <div className='featuredProjectContainer'>
+                <h4>Featured Project</h4>
+            </div>
             <Projects />
             <AboutMe />
             <div style={{height:'80px', backgroundColor: `var(--background-color)`}}>
