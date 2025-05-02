@@ -31,6 +31,7 @@ function Footer() {
                             <li className='link'><Link to="/">Home</Link></li>
                             <li className='link'><Link to="/about">About Me</Link></li>
                             <li className='link'><Link to="/contact">Contact Me</Link></li>
+                            <li className='link'><Link to="/playground">Playground</Link></li>
                         </ul>
                     </div>
                     <div className='menuBlock'>

@@ -1,0 +1,49 @@
+.sticker-wrapper {
+  position: relative;
+}
+
+.sticker-controls {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background-color:  rgb(58, 58, 58);
+  border-radius: 50px;
+  margin-bottom: 10px;
+  margin-left: 40px;
+  margin-top: 20px;
+  width: 50px;
+  z-index: 1;
+}
+
+.sticker-button {
+  border: 2px solid transparent;
+  padding: 8px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+}
+
+.sticker-button.selected {
+  border-color: grey;
+  border-radius: 50px;
+}
+
+.sticker-icon {
+  height: 30px;
+  width: 30px;
+}
+
+.sticker-overlay {
+  position: relative;
+  overflow: hidden;
+}
+
+.placed-sticker {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  pointer-events: none;
+}
