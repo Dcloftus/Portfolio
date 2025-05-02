@@ -13,6 +13,7 @@ import Resume from './pages/Resume/Resume';
 import About from './pages/About/About';
 import Contact from './pages/Contact/Contact'
 import Polls from './pages/TestPolls';
+import Playground from './pages/Playground/Playground';
 
 function App() {
     return (
@@ -27,6 +28,7 @@ function App() {
 					<Route path="/projects/:name" element={<ProjectDetails />} />
 					<Route path="/Resume" element={<Resume />} />
 					<Route path="/about" element={<About />} />
+					<Route path="/playground" element={<Playground />} />
 					<Route path="/polls" element={<Polls />} />
 
 				</Routes>
