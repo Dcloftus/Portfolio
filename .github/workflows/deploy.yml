@@ -26,7 +26,7 @@ jobs:
             cd /srv/Portfolio
 
             echo "🛑 Stopping all services..."
-            docker-compose down
+            docker-compose down --volumes
 
             echo "🔍 Checking for local PostgreSQL..."
             if sudo lsof -i :5432; then
