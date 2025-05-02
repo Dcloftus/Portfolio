@@ -10,7 +10,7 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
-    width: 60%;
+    width: 80%;
 }
 
 .resumeWrapper h1 {
@@ -148,7 +148,7 @@
 }
 
 .educationWrapper {
-    width: 60%;
+    width: 80%;
 }
 
 .skillsWrapper {
@@ -179,18 +179,6 @@
     
     .skillsWrapper {
         width: 100%;
-    }
-}
-
-@media screen and (max-width: 800px) {
-    .resumeWrapper {
-        width: 70%;
-    }
-}
-
-@media screen and (max-width: 700px) {
-    .resumeWrapper {
-        width: 80%;
     }
 }
 

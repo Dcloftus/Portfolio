@@ -183,6 +183,14 @@
     animation: none;
 }
 
+/* Featured Project Section */
+.featuredProjectContainer {
+    padding-top: 40px;
+    background-color: var(--background-color);
+    height:600px; /*Remove this later*/
+}
+
+
 
 @keyframes pulse-animation-small {
     0% {

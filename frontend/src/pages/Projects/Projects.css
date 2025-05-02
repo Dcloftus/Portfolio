@@ -11,7 +11,7 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
-    width: 60%;
+    width: 80%;
 }
 
 .projectsWrapper h1 {
@@ -43,7 +43,7 @@
     overflow-x: visible;
     gap: 10px;
     padding-top: 50px;
-    width: 60%;
+    width: 80%;
 }
 
 .loadingCard {
@@ -79,24 +79,6 @@
 }
 
 /* On screens that are 600px or less, set the background color to olive */
-@media screen and (max-width: 800px) {
-    .projectsWrapper {
-        width: 70%;
-    }
-    .loadingContainer {
-        width: 70%;
-    }
-}
-
-@media screen and (max-width: 700px) {
-    .projectsWrapper {
-        width: 80%;
-    }
-    .loadingContainer {
-        width: 80%;
-    }
-}
-
 @media screen and (max-width: 600px) {
     .projectsWrapper {
         width: 90%;
