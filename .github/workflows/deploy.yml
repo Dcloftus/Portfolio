@@ -39,17 +39,17 @@ jobs:
             echo "========================================================================"
             echo "Pulling latest code from Github..."
             echo "========================================================================"
-            git fetch origin
-            git log HEAD..origin/main --oneline
-            git diff HEAD..origin/main --stat
+            sudo git fetch origin
+            sudo git log HEAD..origin/main --oneline
+            sudo git diff HEAD..origin/main --stat
 
             echo "========================================================================"
             echo "Files changed..."
             echo "========================================================================"
-            changed_files=$(git diff --name-only HEAD..origin/main)
+            changed_files=$(sudo git diff --name-only HEAD..origin/main)
             echo "$changed_files"
-            
-            git merge origin/main
+
+            sudo git merge origin/main
 
             echo "🧼 Pruning old Docker build cache..."
             docker builder prune -f
