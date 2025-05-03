@@ -184,13 +184,114 @@
 }
 
 /* Featured Project Section */
-.featuredProjectContainer {
+.featuredProjectSection {
     padding-top: 40px;
     background-color: var(--background-color);
-    height:600px; /*Remove this later*/
+    display: flex;
+    justify-content: center;
+    color: var(--text-color);
+}
+.featuredProjectContainer {
+    width: 80%;
+    margin-bottom: 40px;
 }
 
+.featuredProjectContainer h1 {
+    color: var(--text-seondary-color);
+    font-weight: 900;
+}
 
+.featuredProjectContainer .content {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    gap: 40px;
+    padding-top: 20px;
+}
+
+.featuredProjectContainer .left {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.contentGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding-bottom: 40px;
+}
+
+.contentGroup .title img {
+    width:70%;
+}
+
+.tags {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.tag {
+    padding: 4px 12px;
+    border-radius: 20px;
+}
+
+.featuredProjectContainer .right {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.right .text {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.right .text h1 {
+    color: var(--text-color);
+    font-size: 55px;
+}
+
+.right .text h4 {
+    color: var(--text-color);
+    font-size: 35px;
+}
+
+.right .images {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#stern {
+    width: 100%;
+}
+#bow {
+    width: 48%;
+}
+#port {
+    width: 48%;
+}
+
+.ctaButton{
+    margin-top: 20px;
+    background-color: var(--primary-color);
+    border: none;
+    border-radius: 20px;
+    padding: 10px 20px;
+    color: var(--text-color);
+    font-weight: 800;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.ctaButton:hover {
+    background-color: var(--primary-color-hover);
+}
 
 @keyframes pulse-animation-small {
     0% {
@@ -332,6 +433,22 @@
     }
     .TadpoleContainer {
         right: -30px;
+    }
+
+    .featuredProjectContainer .content {
+        flex-direction: column;
+    }
+
+    .featuredProjectContainer .left {
+        width: 100%;
+    }
+
+    .featuredProjectContainer .right {
+        width: 100%;
+    }
+
+    .ctaButton {
+        width: 100%;
     }
 }
 

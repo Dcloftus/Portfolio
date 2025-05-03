@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
 import './Home.css';
 
 // Sections
@@ -14,6 +15,10 @@ import {ReactComponent as SendIcon} from '../../assets/icons/Send.svg'
 
 // Images
 import hero from '../../assets/images/DanielHerox2.png'
+import Logo from '../../assets/images/LoftusCo/Logo.png'
+import Port from '../../assets/images/LoftusCo/Port.png'
+import Stern from '../../assets/images/LoftusCo/Stern.png'
+import Bow from '../../assets/images/LoftusCo/Bow.png'
 
 import { ReactComponent as StarLg } from '../../assets/icons/StarLg.svg';
 import { ReactComponent as StarMd } from '../../assets/icons/StarMd.svg';
@@ -104,8 +109,51 @@ function Home() {
                 </div>
             </div>
             <WasHere />
-            <div className='featuredProjectContainer'>
-                <h4>Featured Project</h4>
+            <div style={{height:'80px', backgroundColor: `var(--background-color)`}}>
+                <Banner text="Featured Project" icon={<SendIcon />} direction="backward" rotation={-2} />
+            </div>
+            <div className='featuredProjectSection'>
+                <div className='featuredProjectContainer'>
+                    <h1>Featured Project</h1>
+                    <div className='content'>
+                        <div className='left'>
+                            <div className='contentGroup'>
+                                <div className='title'>
+                                    <img src={Logo} />
+                                </div>
+                                <div className='tags'>
+                                    <p className='tag' style={{backgroundColor: '#FF7262'}}>Mechanical Engineering</p>
+                                    <p className='tag' style={{backgroundColor: '#F24E1E'}}>Design</p>
+                                    <p className='tag' style={{backgroundColor: '#A259FF'}}>Business</p>
+                                </div>
+                                <div className='text'>
+                                    <p>
+                                        Loftus Co is my creative outlet, born from a love of boating and a passion for engineering. The Nautilus Fender was inspired by a moment at a boat dealership when I watched a salesman struggle to juggle fenders with a trailing rope and all of the other required gear. I realized there had to be a better way, and the idea of integrating rope storage into the fender was born.
+                                        The Nautilus Fender combines innovation and practicality. Its internal rope storage system allows for quick, knot-free height adjustments. The sleek, faceted design—reminiscent of modern wake boats—offers more than aesthetics; the squared-off shape provides extra stability when in use. To ensure longevity, I made the shell user-replaceable, allowing owners to swap it out for a fresh look or repair without replacing the entire fender.
+                                        Prototyping this vision required crafting a custom 3D-printed shell, meticulously sanding and refining it to perfection before creating a two-part mold. Using flexible foam, I brought the design to life, combining durability with the exact look I envisioned. I also developed “The Claw,” a hook integrated into the rope, providing a versatile way to secure the fender to cleats or other anchor points.
+                                        Every detail of Nautilus is designed to enhance functionality and usability while reflecting the innovative spirit behind Loftus Co. It’s a fusion of form, function, and creativity, inspired by the adaptable and resilient sea creature it’s named after.
+                                    </p>
+                                </div>
+                            </div>
+                            <div className='cta'>
+                                <Link className='ctaButton' to="/projects/Loftus%20Co">See More</Link>
+                            </div>
+                        </div>
+                        <div className='right'>
+                            <div>
+                                <img id='stern' src={Stern} />
+                            </div>
+                            <div className='text'>
+                                <h1>Nautilus</h1>
+                                <h4>The boat fender reimagined</h4>
+                            </div>
+                            <div className='images'>
+                                <img id='bow' src={Bow} />
+                                <img id='port' src={Port} />
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <Projects />
             <AboutMe />
