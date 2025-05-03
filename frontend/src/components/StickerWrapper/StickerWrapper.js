@@ -24,8 +24,9 @@ export default function StickerWrapper({ children }) {
       const rect = e.currentTarget.getBoundingClientRect();
       const x = e.clientX - rect.left;
       const y = e.clientY - rect.top;
+      const r = (Math.random() * 20 - 10).toFixed(1);
   
-      setPlacedStickers((prev) => [...prev, { x, y, type: selectedSticker }]);
+      setPlacedStickers((prev) => [...prev, { x, y, r, type: selectedSticker }]);
     };
 
     const clearStickers = () => {
@@ -61,7 +62,7 @@ export default function StickerWrapper({ children }) {
               src={stickers[sticker.type]}
               alt={sticker.type}
               className="placed-sticker"
-              style={{ top: `${sticker.y - 20}px`, left: `${sticker.x - 20}px` }}
+              style={{ top: `${sticker.y - 20}px`, left: `${sticker.x - 20}px`, transform: `rotate(${sticker.r}deg)`, transformOrigin: 'center center', }}
             />
           ))}
         </div>
