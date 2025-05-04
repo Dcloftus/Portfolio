@@ -26,7 +26,7 @@ jobs:
             cd /srv/Portfolio
 
             echo "🛑 Stopping all services..."
-            docker-compose down --volumes
+            docker-compose down
 
             echo "🔍 Checking for local PostgreSQL..."
             if sudo lsof -i :5432; then
@@ -36,18 +36,10 @@ jobs:
               echo "✅ No local PostgreSQL running"
             fi
 
-            echo "========================================================================"
             echo "Pulling latest code from Github..."
-            echo "========================================================================"
             sudo git fetch origin
             sudo git log HEAD..origin/main --oneline
             sudo git diff HEAD..origin/main --stat
-
-            echo "========================================================================"
-            echo "Files changed..."
-            echo "========================================================================"
-            changed_files=$(sudo git diff --name-only HEAD..origin/main)
-            echo "$changed_files"
 
             sudo git merge origin/main
 
