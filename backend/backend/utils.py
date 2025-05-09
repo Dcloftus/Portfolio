@@ -1,7 +1,6 @@
 # utils.py
 
 import boto3
-import math
 from botocore.exceptions import NoCredentialsError
 
 import environ
