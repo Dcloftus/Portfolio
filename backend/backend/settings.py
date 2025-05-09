@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'contact.apps.ContactConfig',
     'resume.apps.ResumeConfig',
     'projects.apps.ProjectsConfig',
+    'loftusco.apps.LoftuscoConfig',
     'corsheaders',
     'django.contrib.admin',
     'django.contrib.auth',

@@ -38,9 +38,7 @@ function Footer() {
                         <ul>
                             <li className='listHeader'>Projects</li>
                             <li className='link'><Link to="/projects">All Projects</Link></li>
-                            <li className='link'><ConditionalLink to="/" disabled={true}>Software</ConditionalLink></li>
-                            <li className='link'><ConditionalLink to="/" disabled={true}>Design</ConditionalLink></li>
-                            <li className='link'><ConditionalLink to="/" disabled={true}>Engineering</ConditionalLink></li>
+                            <li className='link'><Link to="/loftusco">Loftus Co Utils</Link></li>
                         </ul>
                     </div>
                     <div className='menuBlock'>
