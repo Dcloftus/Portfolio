@@ -14,6 +14,7 @@ import About from './pages/About/About';
 import Contact from './pages/Contact/Contact'
 import Polls from './pages/TestPolls';
 import Playground from './pages/Playground/Playground';
+import LoftusCo from './pages/LoftusCo/LoftusCo';
 
 function App() {
     return (
@@ -29,6 +30,7 @@ function App() {
 					<Route path="/Resume" element={<Resume />} />
 					<Route path="/about" element={<About />} />
 					<Route path="/playground" element={<Playground />} />
+					<Route path="/loftusco" element={<LoftusCo />} />
 					<Route path="/polls" element={<Polls />} />
 
 				</Routes>
