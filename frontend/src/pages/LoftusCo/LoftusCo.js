@@ -50,8 +50,8 @@ export default function LoftusCo() {
                 </div>
                 <div className='utilityContainer'>
                     <h4>Spool Diameter Calculator</h4>
-                    <div className='spoolCalcInputsContainer'>
-                        <div className='spoolCalcInput'>
+                    <div className='utilityInputsContainer'>
+                        <div className='utilityInput'>
                             <label>Webbing Thickness (mm):</label>
                             <input
                                 type='number'
@@ -59,7 +59,7 @@ export default function LoftusCo() {
                                 onChange={e => setThickness(e.target.value)}
                             />
                         </div>
-                        <div className='spoolCalcInput'>
+                        <div className='utilityInput'>
                             <label>Webbing Length (mm):</label>
                             <input
                                 type='number'
@@ -67,7 +67,7 @@ export default function LoftusCo() {
                                 onChange={e => setLength(e.target.value)}
                             />
                         </div>
-                        <div className='spoolCalcInput'>
+                        <div className='utilityInput'>
                             <label>Arbor Diameter (mm):</label>
                             <input
                                 type='number'
@@ -75,9 +75,14 @@ export default function LoftusCo() {
                                 onChange={e => setArborDiameter(e.target.value)}
                             />
                         </div>
-                        <button className='submitButton' onClick={handleCalculate}>Calculate</button>
                     </div>
-                    <div className='spoolCalcRespContainer'>
+                    {/* <div className='utilityInputsContainer'> */}
+                        <div className='utilityInput'>
+                            <button className='submitButton' onClick={handleCalculate}>Calculate</button>
+                        </div>
+                    {/* </div> */}
+                    <div className='utilityResultContainer'>
+                        <p style={{color:`var(--primary-color)`}}>Results</p>
                         <p>Spool Outer Diameter: <span style={{color:`var(--primary-color)`, fontWeight:900}}>{result ? `${result.spool_outer_diameter} mm` : '—'}</span></p>
                         <p>Turns: <span style={{color:`var(--primary-color)`, fontWeight:900}}>{result ? result.turns : '—'}</span></p>
                     </div>
