@@ -47,15 +47,16 @@
     background-color: var(--primary-color-hover);
 }
 
-.spoolCalcInputsContainer {
+.utilityInputsContainer {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
     padding-bottom: 20px;
     padding-top: 10px;
 }
 
-.spoolCalcInput {
+.utilityInput {
     display: flex;
     flex-direction: column;
     color: var(--text-color);
@@ -63,15 +64,17 @@
     font-size: 18px;
 }
 
-.spoolCalcInput input {
+.utilityInput input {
     background-color: transparent;
     border: 2px solid grey;
     border-radius: 5px;
     color: var(--text-color);
 }
 
-.spoolCalcRespContainer {
+.utilityResultContainer {
     color: var(--text-color);
     font-weight: 500;
     font-size: 18px;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }

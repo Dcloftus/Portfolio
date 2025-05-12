@@ -247,6 +247,7 @@
 
 .right .text {
     display: flex;
+    align-items: center;
     flex-direction: row;
     gap: 20px;
 }
@@ -399,6 +400,16 @@
         border-radius: 30px 5px 30px 30px;
         opacity: 1;
     }
+
+    .right .text h1 {
+        color: var(--text-color);
+        font-size: 40px;
+    }
+
+    .right .text h4 {
+        color: var(--text-color);
+        font-size: 15px;
+    }
 }
 @media screen and (max-width: 900px) {
     .heroTextContainer h2 {
@@ -450,6 +461,15 @@
     .ctaButton {
         width: 100%;
     }
+    .right .text h1 {
+        color: var(--text-color);
+        font-size: 55px;
+    }
+
+    .right .text h4 {
+        color: var(--text-color);
+        font-size: 35px;
+    }
 }
 
 @media screen and (max-width: 600px) {
@@ -473,6 +493,19 @@
     }
     .TadpoleContainer {
         bottom: 150px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+
+    .right .text h1 {
+        color: var(--text-color);
+        font-size: 30px;
+    }
+
+    .right .text h4 {
+        color: var(--text-color);
+        font-size: 15px;
     }
 }
 
