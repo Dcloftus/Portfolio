@@ -1,0 +1,65 @@
+# Portfolio stack for the home server. Copy .env.example to .env and fill it in first.
+#   docker compose up -d --build
+# Never run `docker compose down -v`; that deletes the database volume.
+name: portfolio
+
+services:
+  db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${DB_NAME:-portfolio}
+      POSTGRES_USER: ${DB_USER:-portfolio}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:?set DB_PASSWORD in .env}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 5s
+      retries: 10
+
+  backend:
+    build: ./backend
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      DB_HOST: db
+      DB_PORT: 5432
+      MEDIA_ROOT: /media
+    volumes:
+      - ${MEDIA_PATH:?set MEDIA_PATH in .env}:/media:ro
+    ports:
+      - "${BACKEND_PORT:-8001}:8000"
+    depends_on:
+      db:
+        condition: service_healthy
+
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        REACT_APP_API_BASE_URL: ${API_BASE_URL:-https://api.danielloftus.dev}
+    restart: unless-stopped
+    volumes:
+      - ${MEDIA_PATH}:/media:ro
+    ports:
+      - "${FRONTEND_PORT:-8080}:80"
+    depends_on:
+      - backend
+
+  # Public hostnames are configured in the Cloudflare dashboard:
+  #   danielloftus.dev, www.danielloftus.dev -> http://frontend:80
+  #   api.danielloftus.dev                   -> http://backend:8000
+  cloudflared:
+    image: cloudflare/cloudflared:latest
+    restart: unless-stopped
+    command: tunnel --no-autoupdate run
+    environment:
+      TUNNEL_TOKEN: ${CLOUDFLARE_TUNNEL_TOKEN:-}
+    depends_on:
+      - frontend
+      - backend
+    profiles: ["public"]
+
+volumes:
+  postgres_data:

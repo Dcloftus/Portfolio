@@ -1,82 +1,68 @@
 # utils.py
+#
+# Media lives on disk (formerly S3) under MEDIA_ROOT, served by nginx at MEDIA_BASE_URL:
+#   projects/<Project Name>/{logo,cover,spotlight,overflow,video}/<files>
+#   resume/<any>.pdf
 
-import boto3
-from botocore.exceptions import NoCredentialsError
+import os
+from urllib.parse import quote
 
-import environ
+from django.conf import settings
 
-def getAWS_Details():
-    # Get environment variables from .env
-    env = environ.Env()
-    # Use for Local Development
-    env.read_env()
 
-    # Use for on the server
-    #env.read_env('/srv/env/.env')
+def _find_dir(parent, name):
+    """
+    Finds a sub folder ignoring case and spaces, so a project named
+    'Coffee Drawer Organizer' matches a folder named 'CoffeeDrawerOrganizer'.
+    """
+    key = name.replace(" ", "").lower()
+    try:
+        for entry in os.scandir(parent):
+            if entry.is_dir() and entry.name.replace(" ", "").lower() == key:
+                return entry.path
+    except (FileNotFoundError, NotADirectoryError):
+        pass
+    return None
 
-    s3_client = boto3.client(
-        's3',
-        aws_access_key_id=env("AWS_ACCESS_KEY_ID"),
-        aws_secret_access_key=env("AWS_SECRET_ACCESS_KEY"),
-        region_name=env("AWS_REGION")
+def _list_files(folder):
+    if not folder:
+        return []
+    entries = sorted(
+        (e for e in os.scandir(folder) if e.is_file() and not e.name.startswith('.')),
+        key=lambda e: e.name,
     )
+    return [_media_url(e.path) for e in entries]
 
-    bucket_name = env("AWS_STORAGE_BUCKET_NAME")
+def _media_url(path):
+    relative = os.path.relpath(path, settings.MEDIA_ROOT).replace(os.sep, "/")
+    return settings.MEDIA_BASE_URL + quote(relative)
 
-    return s3_client, bucket_name
-
-def get_s3_project_urls(project_name, folders):
+def get_project_media_urls(project_name, folders):
 
     """
-    Retrieves all image URLs from a specific folder in an S3 bucket.
+    Retrieves all file URLs from each of the given folders of a project.
     """
-    s3_client, bucket_name = getAWS_Details()
-    
-    base_path = f'projects/{project_name.replace(" ", "")}/'
+    projects_dir = _find_dir(settings.MEDIA_ROOT, "projects")
+    project_dir = _find_dir(projects_dir, project_name) if projects_dir else None
 
-    s3_urls = {}
+    media_urls = {}
 
     for folder in folders:
-        try:
-            folder_path = f'{base_path}{folder}/'
-            # List objects in the folder
-            response = s3_client.list_objects_v2(Bucket=bucket_name, Prefix=folder_path)
+        file_urls = _list_files(_find_dir(project_dir, folder) if project_dir else None)
 
-            # Filter to include only the URLs of the objects (ignore the folder path)
-            file_urls = [
-                f"https://{bucket_name}.s3.amazonaws.com/{item['Key']}"
-                for item in response.get('Contents', [])
-                if item['Key'] != folder_path  # Exclude the main folder path
-            ]
+        # If the folder is 'cover' and has at least one image, return only the first image URL
+        if folder == "cover" and file_urls:
+            media_urls[folder] = file_urls[0]
+        else:
+            media_urls[folder] = file_urls
 
-            # If the folder is 'cover' and has at least one image, return only the first image URL
-            if folder == "cover" and file_urls:
-                s3_urls[folder] = file_urls[0]
-            else:
-                s3_urls[folder] = file_urls
+    return media_urls
 
-        except NoCredentialsError:
-            print("Credentials not available")
-
-    return s3_urls
-
-def get_s3_resume_url():
+def get_resume_url():
 
     """
-    Retrieves link to Resume in S3 bucket.
+    Retrieves link to the first PDF in the resume folder.
     """
-    s3_client, bucket_name = getAWS_Details()
-
-    resume_key = f'resume/daniel_loftus_resume.pdf'
-
-    try:
-        # Generate a pre-signed URL for the resume
-        url = s3_client.generate_presigned_url(
-            'get_object',
-            Params={'Bucket': bucket_name, 'Key': resume_key},
-            ExpiresIn=3600  # URL expiration time in seconds (e.g., 1 hour)
-        )
-        return url
-    except NoCredentialsError:
-        print("Credentials not available")
-        return None
+    resume_dir = _find_dir(settings.MEDIA_ROOT, "resume")
+    pdfs = [url for url in _list_files(resume_dir) if url.lower().endswith(".pdf")]
+    return pdfs[0] if pdfs else None

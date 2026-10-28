@@ -4,7 +4,7 @@ from rest_framework import generics
 from rest_framework.exceptions import NotFound
 from collections import defaultdict
 
-from backend.utils import get_s3_project_urls
+from backend.utils import get_project_media_urls
 from .models import Project, TextSection
 from .serializers import ProjectSerializer, TextSectionSerializer
 # Create your views here.
@@ -33,9 +33,9 @@ class ProjectDetails(generics.ListAPIView):
         # Serialize the project data
         project_data = ProjectSerializer(project).data
 
-        # Get S3 URLs and integrate them inline
+        # Get media URLs and integrate them inline
         folders = ['logo', 'cover', 'spotlight', 'overflow', 'video']
-        s3_urls = get_s3_project_urls(project_name, folders)
+        media_urls = get_project_media_urls(project_name, folders)
 
         # Fetch all TextSections for the project, ordered by 'order'
         text_sections = TextSection.objects.filter(project=project).order_by('order')
@@ -49,7 +49,7 @@ class ProjectDetails(generics.ListAPIView):
         # Structure the response
         response_data = {
             'project': project_data,
-            **s3_urls,  # Inline S3 URLs at top level
+            **media_urls,  # Inline media URLs at top level
             **grouped_sections  # Unpack the grouped sections into the response
         }
         

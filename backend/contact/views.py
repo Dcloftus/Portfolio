@@ -8,12 +8,6 @@ from django.http import JsonResponse
 
 from .models import Contact
 
-@api_view(['GET'])
-def getContact(request):
-    contact = Contact.objects.all()
-    json = [{"id": c.id, "name": c.name, "email": c.email, "message": c.message} for c in contact]
-    return JsonResponse(json, safe=False)
-
 @api_view(['POST'])
 def addContact(request):
     try:

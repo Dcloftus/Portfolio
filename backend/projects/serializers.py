@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from .models import Project, TextSection
-from backend.utils import get_s3_project_urls
+from backend.utils import get_project_media_urls
 
 class ProjectSerializer(serializers.ModelSerializer):
     cover = serializers.SerializerMethodField()
@@ -14,7 +14,7 @@ class ProjectSerializer(serializers.ModelSerializer):
         folders = ["cover"]
         
         # Call the utility function with the project name and folders
-        cover_images = get_s3_project_urls(obj.name, folders)
+        cover_images = get_project_media_urls(obj.name, folders)
         
         return cover_images.get("cover")
 

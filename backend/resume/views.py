@@ -4,7 +4,7 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from django.db.models import Prefetch
 
-from backend.utils import get_s3_resume_url
+from backend.utils import get_resume_url
 from .serializers import ProfileSerializer, CompanySerializer, ExperienceSerializer, JobDescriptionSerializer, EducationSerializer, SkillsSerializer
 from .models import Profile, Company, Experience, JobDescription, Education, Skills
 
@@ -41,11 +41,11 @@ def getSkills(request):
 
 @api_view(['GET'])
 def getPDFLink(request):
-    # Get S3 URL
-    s3_url = get_s3_resume_url()
+    # Get resume URL
+    resume_url = get_resume_url()
     
     # Check if the URL was retrieved successfully
-    if s3_url:
-        return Response({'url': s3_url}, status=status.HTTP_200_OK)
+    if resume_url:
+        return Response({'url': resume_url}, status=status.HTTP_200_OK)
     else:
         return Response({'error': 'Could not retrieve resume link'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
