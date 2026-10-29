@@ -6,11 +6,17 @@ from django.db import models
 #=====================================================
 
 #Project
-# name (This is also the folder name in S3)
+# name (This is also the folder name under media/projects)
 # description (Limit this to the amount of characters allowed in the carrosol on the projects overview page ~150 char)
+# order (Lower numbers show first on the projects page)
 class Project(models.Model):
     name = models.CharField(max_length=50)
     description = models.CharField(max_length=200)
+    order = models.PositiveIntegerField(default=0, help_text="Lower numbers show first on the projects page")
+
+    class Meta:
+        ordering = ['order', 'id']
+
     def __str__(self):
         return self.name
 
