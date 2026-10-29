@@ -9,12 +9,25 @@
     width: 250px;
 }
 
+/* Keeps line breaks typed into a text section in admin */
+.projectWrapper p {
+    white-space: pre-line;
+}
+
 .projectMainDesc {
 
 }
 
 .imageSection {
     display: flex;
+    gap: 40px;
+}
+
+/* Banner.css zeroes every <p> margin, so space the image descriptions out here */
+.imageDesc {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
 .overflowGrid {
